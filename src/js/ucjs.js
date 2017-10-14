@@ -102,6 +102,15 @@ var cssjson = {
             }
         },
         {
+            "property": {
+                "fs": "font-style"
+            },
+            "value": {
+                "-i": "italic",
+                "-n": "normal"
+            }
+        },
+        {
             "property" : {
                 "ta" : "text-align"
             },
