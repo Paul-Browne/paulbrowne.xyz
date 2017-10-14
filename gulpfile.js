@@ -250,7 +250,7 @@ gulp.task('images:dist', function() {
     jpegRecompress: false,
     mozjpeg: true,
     guetzli: false,
-    gifsicle: true,
+    gifsicle: false,
     svgo: true,
     concurrent: 10
   })))

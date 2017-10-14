@@ -38,6 +38,7 @@
     "opn": "^5.1.0",
     "run-sequence": "^2.2.0",
     "serve-static": "^1.12.1",
-    "spdy": "^3.4.4"
+    "spdy": "^3.4.4",
+    "gulp-imagemin": "^3.4.0"
   }
 }
