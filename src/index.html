@@ -11,8 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <style>
         #t-1, #t-2, #t-3 {
-            font-family: 'Source Code Pro', monospace;
-            font-family: 'Crimson Text', serif;
             font-family: 'Libre Baskerville', serif;
         }
         section{
@@ -22,13 +20,23 @@
 </head>
 
 <body>
-<section class="d-f jc-c ai-c m_fd-cr ml_fd-r">
+<section class="d-f jc-c ai-c m_fd-c ml_fd-r">
+    <div class="w-a va-m d-b h-8 m-r-2 m_m-r-0 m_m-b-2 ml_m-r-2 ml_m-b-0">
+        <svg class="h-1-1" viewbox="0 0 325 325" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+            <g>
+                <path fill="black" id="svg_1" d="m12.227,318.323l33.783,-19.73l0,-76.215l33.243,19.189l66.487,-38.649l0.27,-76.756l-66.216,-38.649l-68.378,38.919l0.81,191.891l0.001,0z"></path>
+                <path fill="#fff" id="svg_2" d="m47.15,145.689l31.786,-18.338c0,0.245 32.763,19.316 32.763,19.316l0,37.408l-32.274,19.071l-32.519,-19.315l0.245,-38.142l-0.001,0z"></path>
+                <path fill="black" id="svg_3" d="m180.482,11.958l33.512,19.457l0.63,76.213l32.656,-19.456l65.95,38.111l0.9,76.752l-65.043,39.18l-67.82,-38.366l-0.785,-191.891z"></path>
+                <path fill="#fff" id="svg_4" d="m216.383,184.305l31.527,18.081c-0.002,-0.244 32.182,-19.579 32.182,-19.579l-0.31,-37.407l-32.015,-18.81l-31.94,19.576l0.556,38.14l0,-0.001z"></path>
+            </g>
+        </svg>
+
+    </div>
     <div class="m_ta-c ml_ta-l">
         <h1 class="m-0 m-b-05 fs-34" id="t-1"></h1>
         <p class="m-0 fs-22"  id="t-2"></p>
         <p class="m-0 fs-18 m-t-05 fs-i"  id="t-3"></p>
     </div>
-    <img class="w-a va-m d-b h-8 m-l-2 m_m-l-0 m_m-b-2 ml_m-l-2 ml_m-b-0" src="images/pb.svg">
 </section>
 
 
@@ -53,6 +61,22 @@
         typeSpeed: 80,
         startDelay: 10000,
         cursorChar: ''
+    });
+</script>
+<script>
+    var svg_1 = document.getElementById("svg_1");
+    var svg_2 = document.getElementById("svg_2");
+    var svg_3 = document.getElementById("svg_3");
+    var svg_4 = document.getElementById("svg_4");
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    window.addEventListener("mousemove", function(e){
+        var x = e.clientX;
+        var y = e.clientY;
+        svg_1.style.fill = "rgb(0," + Math.round(100 * (x/w)) + "," + Math.round(100 * (y/h)) + ")";
+        svg_2.style.fill = "rgb(255," + Math.round(255 - (100 * (y/h))) + "," + Math.round(255 - (100 * (x/w))) + ")";
+        svg_3.style.fill = "rgb(0," + Math.round(100 * (y/h)) + "," + Math.round(100 * (x/w)) + ")";
+        svg_4.style.fill = "rgb(255," + Math.round(255 - (100 * (x/w))) + "," + Math.round(255 - (100 * (y/h))) + ")";
     });
 </script>
 </body>
