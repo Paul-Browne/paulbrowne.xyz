@@ -93,7 +93,7 @@ gulp.task('server', function(){
 
                     disthttpsServer.listen(8888);
                     console.log("https://localhost:8888");
-                    opn('https://localhost:8888');
+                    //opn('https://localhost:8888');
 
                     var dev = express();
                     dev.use(compression())
@@ -104,7 +104,7 @@ gulp.task('server', function(){
                     var devhttpsServer = http2.createServer(credentials, dev);
                     devhttpsServer.listen(8887);
                     console.log("https://localhost:8887");
-                    opn('https://localhost:8887');
+                    //opn('https://localhost:8887');
                 }
             })
         }

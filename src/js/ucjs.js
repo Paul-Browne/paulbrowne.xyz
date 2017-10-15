@@ -4,8 +4,8 @@ var cssjson = {
         "l_"  : "@media only screen and (max-width: 1500px){",
         "t_"  : "@media only screen and (max-width: 1200px){",
         "tl_" : "@media only screen and (max-width: 1200px) and (orientation:landscape){",
-        "m_"  : "@media only screen and (max-width: 700px){",
-        "ml_" : "@media only screen and (max-width: 700px) and (orientation:landscape){"
+        "m_"  : "@media only screen and (max-width: 45em){",
+        "ml_" : "@media only screen and (max-width: 45em) and (orientation:landscape){"
     },
     "rules" : [
         {
@@ -53,9 +53,9 @@ var cssjson = {
                 "mw" : "max-width"
             },
             "loop" : {
-                "i"       : 5,
-                "name"    : "'-' + ((i*5) + 60)",
-                "func"    : "((i*5) + 60) + 'em'"
+                "i"       : 8,
+                "name"    : "'-' + ((i*5) + 45)",
+                "func"    : "((i*5) + 45) + 'em'"
             },
             "value" : {
                 "-100" : "100%"
