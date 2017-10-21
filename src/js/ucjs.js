@@ -3,9 +3,9 @@ var cssjson = {
         ""    : "@media only screen{",
         "l_"  : "@media only screen and (max-width: 95em){",        // 1520px
         "t_"  : "@media only screen and (max-width: 82.5em){",      // 1320px
-        "tp_" : "@media only screen and (max-width: 62.5em){",      // 1000px
+        "tp_" : "@media only screen and (max-width: 82.5em) and (orientation: portrait){",      // 1000px
         "m_"  : "@media only screen and (max-width: 45em){",        // 720px
-        "mp_" : "@media only screen and (max-width: 27.5em){"       // 432px
+        "mp_" : "@media only screen and (max-width: 45em) and (orientation: portrait){"       // 432px
     },
 /*
     "media" : {
