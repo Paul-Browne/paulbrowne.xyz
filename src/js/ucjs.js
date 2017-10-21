@@ -5,7 +5,7 @@ var cssjson = {
         "t_"  : "@media only screen and (max-width: 82.5em){",      // 1320px
         "tp_" : "@media only screen and (max-width: 62.5em){",      // 1000px
         "m_"  : "@media only screen and (max-width: 45em){",        // 720px
-        "mp_" : "@media only screen and (max-width: 25em){"         // 400px
+        "mp_" : "@media only screen and (max-width: 27.5em){"       // 440px
     },
 /*
     "media" : {
