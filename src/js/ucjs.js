@@ -1,12 +1,22 @@
 var cssjson = {
     "media" : {
         ""    : "@media only screen{",
+        "l_"  : "@media only screen and (max-width: 95em){",        // 1520px
+        "t_"  : "@media only screen and (max-width: 82.5em){",      // 1320px
+        "tp_" : "@media only screen and (max-width: 62.5em){",      // 1000px
+        "m_"  : "@media only screen and (max-width: 45em){",        // 720px
+        "mp_" : "@media only screen and (max-width: 25em){"         // 400px
+    },
+/*
+    "media" : {
+        ""    : "@media only screen{",
         "l_"  : "@media only screen and (max-width: 1500px){",
         "t_"  : "@media only screen and (max-width: 1200px){",
         "tl_" : "@media only screen and (max-width: 1200px) and (orientation:landscape){",
         "m_"  : "@media only screen and (max-width: 45em){",
         "ml_" : "@media only screen and (max-width: 45em) and (orientation:landscape){"
     },
+*/
     "rules" : [
         {
             "property" : {

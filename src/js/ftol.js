@@ -77,4 +77,3 @@ function fittextonlines() {
         }
     })();
 }
-fittextonlines();
