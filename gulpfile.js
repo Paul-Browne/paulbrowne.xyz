@@ -20,6 +20,7 @@ var http2        = require('spdy');
 var del          = require('del');
 var opn          = require('opn');
 
+
 require('dotenv').config();
 
 // https server with gzip and http2 (only if cert and key exist)
@@ -372,13 +373,50 @@ gulp.task('default', function(callback) {
   )
 })
 
+// gulp.task('bob', function () {
+//   gulp.src('src/images/me.jpg')
+//     .pipe(imageResize({
+//       width : 128
+//     }))
+//     .pipe(gulp.dest('dist/images/128'));
+// });
 
-/*
-CRON TASK
-git pull -r
-gulp build:dist
-gulp clean:dev (just incase)
-restart nginx
-*/
+// var sharp = require('sharp');
+// gulp.task('bob', function () {
+//   return gulp.src('src/images/**/*')
+//   .pipe(gulpIf(/.*\.(png|jpg|jpeg|gif|svg)$/, sharp('src/images/me.jpg')
+//     .resize(128)
+//     .toFile('dist/images/me-128.jpg', function(err) {});
+//   }))
+// })
 
+
+//var responsive = require('gulp-responsive');
+
+// gulp.task('bob', function() {
+//   return gulp.src('src/**/*.jpg')
+//     .pipe(responsive({
+//       '*.jpg': { width: 128 }
+//     }))
+//   .pipe(gulp.dest('dist/images/128'))
+// })
+
+
+// gulp.task('bob', function () {
+//   return gulp.src('src/*.{jpg,png}')
+//     .pipe($.responsive({
+//       '*.jpg': { width: 200 },
+//       '*.png': { width: '50%' },
+//       '*': {
+//         width: 100,
+//         rename: { suffix: '-thumbnail' },
+//       },
+//     }, {
+//       quality: 70,
+//       progressive: true,
+//       compressionLevel: 6,
+//       withMetadata: false,
+//     }))
+//     .pipe(gulp.dest('dist/qwe'));
+// });
 

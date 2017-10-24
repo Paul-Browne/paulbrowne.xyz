@@ -73,6 +73,17 @@ var cssjson = {
         },
         {
             "property" : {
+                "p" : "position"
+            },
+            "value" : {
+                "-a"  : "absolute",
+                "-r"  : "relative",
+                "-f"  : "fixed",
+                "-s"  : "static"
+            }
+        },
+        {
+            "property" : {
                 "m" : "margin",
                 "p" : "padding"
             },
@@ -292,11 +303,14 @@ document.head.appendChild(style);
 var m = Object.keys(cssjson.media);
 var ml = m.length;
 
+var pre = document.getElementById("rrr");
+
 function loopy(ar1, ar2, ar3){
     if(r.loop){
         var i = r.loop.i;
         while(i--){
             style.sheet.insertRule(mv + '.' + mk + pk + ar2 + eval(r.loop.name) + ar1 + "{" + pv + ar3 + ":" + eval(r.loop.func) + "}}", 0);
+            pre.innerHTML += (mv + '.' + mk + pk + ar2 + eval(r.loop.name) + ar1 + "{" + pv + ar3 + ":" + eval(r.loop.func) + "}}" + '\n' );
         }
     }
     if(r.value){
@@ -304,6 +318,7 @@ function loopy(ar1, ar2, ar3){
         var vl = v.length;
         while(vl--){
             style.sheet.insertRule(mv + '.' + mk + pk + ar2 + v[vl] + ar1 + "{" + pv + ar3 + ":" + r.value[v[vl]] + "}}", 0);
+            pre.innerHTML += (mv + '.' + mk + pk + ar2 + v[vl] + ar1 + "{" + pv + ar3 + ":" + r.value[v[vl]] + "}}" + '\n');
         }
     }
 }
