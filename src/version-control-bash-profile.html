@@ -27,19 +27,19 @@
     <meta property="og:image" content="https://paulbrowne.xyz/images/android-chrome-192x192.png" >
     <!-- /stuff that stays the same -->
 
-    <title>https://localhost &middot; paulbrowne.xyz</title>
-    <meta name="description" content="How to add ssl to localhost, https://localhost for Mac" >
-    <meta name="twitter:description" content="How to add ssl to localhost, https://localhost for Mac">
-    <meta property="og:description" content="How to add ssl to localhost, https://localhost for Mac" >
-    <meta property="og:url" content="https://paulbrowne.xyz/https-localhost" >
+    <title>.bash_profile in git &middot; paulbrowne.xyz</title>
+    <meta name="description" content="How to put your .bash_profile under version control for Mac" >
+    <meta name="twitter:description" content="How to put your .bash_profile under version control for Mac">
+    <meta property="og:description" content="How to put your .bash_profile under version control for Mac" >
+    <meta property="og:url" content="https://paulbrowne.xyz/version-control-bash-profile" >
     <!-- /Social media meta stuff -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" >
     <link rel="stylesheet" type="text/css" href="css/github.css">
     <link rel="stylesheet" type="text/css" href="css/ucjs.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <script src="js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <style>
         body {
             line-height: 1.4;
@@ -61,26 +61,56 @@
         <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
         <div>
             <a class="td-n m-r-1" href="contents">contents</a>
-
             <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
-
             <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
-
             <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
         </div>
     </nav>
+
+
+
     <section class="mw-45 m-a m_m-l-1 m_m-r-1">
-        <h1 class="ta-c">https://localhost</h1>
-        <p class="">A set of really simple commands to enable https over localhost for Mac</p>
+        <h1 class="ta-c">Putting your .bash_profile in git</h1>
+        <p class="">If you spend several hours a day in Terminal, and you created a bunch of <code>alias</code> commands like <code>alias gs='git status'</code> to make your life just a little faster. Then why not commit that good work to version control, and potentially help others.</p>
+        <p class="">Incase disaster strikes and you need to reinstall your OS, you won't lose all those handy shortcuts you've created over the years.</p>
+        <p class="">First thing you need to do is create a directory in your home folder, and <code>git init</code>.</p>
+
         <pre>
             <code class="bash">
-    cd; mkdir .ssl
-
-    openssl req -newkey rsa:2048 -x509 -nodes -keyout .ssl/localhost.key -new -out .ssl/localhost.crt -subj /CN=localhost -reqexts SAN -extensions SAN -config &lt;(cat /System/Library/OpenSSL/openssl.cnf &lt;(printf '[SAN]\nsubjectAltName=DNS:localhost')) -sha256 -days 3650
-
-    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain .ssl/localhost.crt
+    mkdir bash_profile
+    cd bash_profile
+    git init
             </code>
         </pre>
+
+        <p class="">Now lets add that <code>git status</code> alias, and commit the file.</p>
+
+        <pre>
+            <code class="bash">
+    echo 'alias gs="git status"' >> .bash_profile
+    git add .
+    git commit -m "init bash_profile repo"
+            </code>
+        </pre>
+
+        <p class="">You'll need to create the <code>bash_profile</code> repo over on <a href="https://github.com">github</a>, then you can add the remote, and push to master.</p>
+
+        <pre>
+            <code class="bash">
+    git remote add origin https://github.com/YOUR_NAME/bash_profile.git
+    git push -u origin master
+            </code>
+        </pre>
+
+        <p class="">Once you've done that all thats left to do is point the 'actual' .bash_profile to your new version controlled one. This is done by using <code>source</code>.</p>
+
+        <pre>
+            <code class="bash">
+    cd; echo "source ~/bash_profile/.bash_profile" >> .bash_profile
+            </code>
+        </pre>
+
+        <p>Now you're all set! All thats left to do is to add some <code>alias</code> shortcuts, or <code>functions</code> if you're feeling adventurous, and push to master.<br>P.S. Rember to restart your terminal everytime you edit your .bash_profile to see the changes.</p>
     </section>
 </body>
 
