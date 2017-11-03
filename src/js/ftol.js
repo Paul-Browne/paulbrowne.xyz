@@ -7,11 +7,17 @@ function fittextonlines() {
             return false;
         }
     }
-    function debouncedResize(a, b) {
+    function debouncedResize(b, c) {
+        var d = [window.innerWidth];
         return window.addEventListener("resize", function() {
-            clearTimeout(b),
-                b = setTimeout(a, 150)
-        }), a
+            var e = window.innerWidth,
+                f = d.length;
+            d.push(e);
+            if (d[f] !== d[f - 1]) {
+                clearTimeout(c);
+                c = setTimeout(b, 100);
+            }
+        }), b;
     }
     debouncedResize(function() {
         var element = document.querySelectorAll(".js-fit-text-on-lines, .js-ftol");
