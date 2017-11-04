@@ -12,33 +12,33 @@
             </code>
         </pre><p>use the <code>min-height</code> css attribute to specify how many lines the text should be on</p><pre>
             <code class="css br-6">
-    /* the above example */
+/* the above example */
 
-    h1.js-ftol {
-        min-height: 1px;
-    }
+h1.js-ftol {
+    min-height: 1px;
+}
 
+p.js-ftol {
+    min-height: 6px;
+}
+
+/* works with @media queries */
+
+@media only screen and (max-width: 45em){
     p.js-ftol {
-        min-height: 6px;
+        min-height: 9px;
     }
-
-    /* works with @media queries */
-
-    @media only screen and (max-width: 45em){
-        p.js-ftol {
-            min-height: 9px;
-        }
-    }
+}
             </code>
         </pre><p>If you are using a custom font - which you probably are - and it comes form google fonts or typescript - which it probably does. Then you'll need to call the <code>fittextonlines()</code> script using the <a href="https://github.com/typekit/webfontloader">WebFontConfig script</a> like so</p><pre>
             <code class="js">
-    WebFontConfig = {
-        google: {
-            families: ['Libre Baskerville:400,400i,700']
-        },
-        active: function() {
-            fittextonlines();
-        }
-    };
+WebFontConfig = {
+    google: {
+        families: ['Libre Baskerville:400,400i,700']
+    },
+    active: function() {
+        fittextonlines();
+    }
+};
             </code>
         </pre><p>Go grab the repo over at <a href="https://github.com/Paul-Browne/fit-text-on-lines">github</a></p></section><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-3")</script></body></html>
