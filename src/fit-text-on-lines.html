@@ -123,23 +123,23 @@
 
         <pre>
             <code class="css br-6">
-    /* the above example */
+/* the above example */
 
-    h1.js-ftol {
-        min-height: 1px;
-    }
+h1.js-ftol {
+    min-height: 1px;
+}
 
+p.js-ftol {
+    min-height: 6px;
+}
+
+/* works with @media queries */
+
+@media only screen and (max-width: 45em){
     p.js-ftol {
-        min-height: 6px;
+        min-height: 9px;
     }
-
-    /* works with @media queries */
-
-    @media only screen and (max-width: 45em){
-        p.js-ftol {
-            min-height: 9px;
-        }
-    }
+}
             </code>
         </pre>
 
@@ -147,14 +147,14 @@
 
         <pre>
             <code class="js">
-    WebFontConfig = {
-        google: {
-            families: ['Libre Baskerville:400,400i,700']
-        },
-        active: function() {
-            fittextonlines();
-        }
-    };
+WebFontConfig = {
+    google: {
+        families: ['Libre Baskerville:400,400i,700']
+    },
+    active: function() {
+        fittextonlines();
+    }
+};
             </code>
         </pre>
 

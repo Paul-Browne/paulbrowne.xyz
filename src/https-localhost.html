@@ -74,19 +74,33 @@
         <p class="">A set of really simple commands to enable https over localhost for Mac</p>
         <pre>
             <code class="bash">
-    cd; mkdir .ssl
+cd; mkdir .ssl
 
-    openssl req -newkey rsa:2048 -x509 -nodes -keyout .ssl/localhost.key -new -out .ssl/localhost.crt -subj /CN=localhost -reqexts SAN -extensions SAN -config &lt;(cat /System/Library/OpenSSL/openssl.cnf &lt;(printf '[SAN]\nsubjectAltName=DNS:localhost')) -sha256 -days 3650
+openssl req -newkey rsa:2048 -x509 -nodes -keyout .ssl/localhost.key -new -out .ssl/localhost.crt -subj /CN=localhost -reqexts SAN -extensions SAN -config &lt;(cat /System/Library/OpenSSL/openssl.cnf &lt;(printf '[SAN]\nsubjectAltName=DNS:localhost')) -sha256 -days 3650
 
-    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain .ssl/localhost.crt
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain .ssl/localhost.crt
             </code>
         </pre>
+        <p>Now that you have a certificate for you loacalhost, you can spin up a server. An easy option would be to use <a href="https://www.npmjs.com/package/http-server">http-server</a>, which comes with options to serve over ssl.</p>
+        <pre>
+            <code class="bash">
+npm install http-server -g
+            </code>
+        </pre>
+        <p>Now to spin-up the server with ssl you'll need to pass a few options to the http-server command.</p>
+        <pre>
+            <code class="bash">
+http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/localhost.key -a localhost -o
+            </code>
+        </pre>
+        <p>This command is quite long to type in everytime you want to spin-up a server with ssl, so you might want to consider adding an <code>alias</code> like</p>
+        <pre>
+            <code class="bash">
+alias https-server='http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/localhost.key -a localhost -o'
+            </code>
+        </pre>
+        <p>And add it to your <code>.bash_profile</code></p>
     </section>
-
-
-
-
-
 
 
 
