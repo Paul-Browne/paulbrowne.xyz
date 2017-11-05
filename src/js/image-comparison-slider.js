@@ -1,6 +1,6 @@
 (function() {
 
-    var elsH = document.querySelectorAll(".left-right-image-spliter .mover");
+    var elsH = document.querySelectorAll(".image-spliter .mover");
     var i = elsH.length;
     while (i--) {
         var moverWidth = elsH[i].getBoundingClientRect().width;
@@ -51,7 +51,7 @@
 
 
     window.addEventListener("resize", function(f) {
-        var elsHre = document.querySelectorAll(".left-right-image-spliter .mover");
+        var elsHre = document.querySelectorAll(".image-spliter .mover");
         var ii = elsHre.length;
         while (ii--) {
             var moverWidth = elsHre[ii].getBoundingClientRect().width;

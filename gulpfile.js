@@ -377,11 +377,6 @@ gulp.task('resize', function(callback) {
 })
 
 
-
-
-
-
-
 // Build
 
 gulp.task('build', function(callback) {
