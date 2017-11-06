@@ -112,7 +112,7 @@ gulp.task('server', function(){
 
                     var dev = express();
                     dev.use(compression())
-                    dev.use(serveStatic('./dist', {
+                    dev.use(serveStatic('./dev', {
                         'extensions': ['html'],
                         'maxAge': 3600000
                     }))
