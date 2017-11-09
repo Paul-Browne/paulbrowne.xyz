@@ -23,20 +23,20 @@
     <meta name="twitter:creator" content="@paulbrownexyz">
     <meta name="twitter:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <meta name="twitter:title" content="Paul Browne - Web developer">
-    <meta property="og:title" content="Paul Browne - Web developer" >
-    <meta property="og:type" content="article" >
-    <meta property="og:site_name" content="paulbrowne.xyz" >
-    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png" >
+    <meta property="og:title" content="Paul Browne - Web developer">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="paulbrowne.xyz">
+    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <!-- /stuff that stays the same -->
 
     <title>Contents &middot; paulbrowne.xyz</title>
-    <meta name="description" content="All the stuff i've done" >
+    <meta name="description" content="All the stuff i've done">
     <meta name="twitter:description" content="Contents page - All the stuff i've done">
-    <meta property="og:description" content="Contents page - All the stuff i've done" >
-    <meta property="og:url" content="https://paulbrowne.xyz/contents" >
+    <meta property="og:description" content="Contents page - All the stuff i've done">
+    <meta property="og:url" content="https://paulbrowne.xyz/contents">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/ucjs.css">
     <!-- <script src="js/ucjs.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
@@ -45,9 +45,15 @@
             line-height: 1.4;
             font-family: 'Libre Baskerville', serif;
         }
+
         p {
             font-size: 18px;
         }
+
+.hello\:world {
+    color: red;
+}
+
     </style>
 </head>
 
@@ -63,6 +69,8 @@
         <p><a class="td-n fw-700" href="image-comparison-slider">Image comparsion slider</a>: A simple before-after image comparison slider thingy, with no jQuery dependency.</p>
 
         <p><a class="td-n fw-700" href="html5-gulp-boilerplate">html5 Gulp Boilerplate</a>: Including Express server - with https//localhost, http2 and gzip compression - html, css and js minification, js uglification, sass and less precompilers, autoprefixer, html, css and js prettifier, css and js file combiner and image optimization and resizing. phew.</p>
+
+        <p><a class="td-n fw-700" href="debouncing">Debouncing</a>: How to debounce resize, mousemove and scroll events, to put less strain on your cpu.</p>
 
         <h5>coming soon...</h5>
 
@@ -99,19 +107,20 @@
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-36765884-3');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36765884-3');
+
+    </script>
 
 </body>
 
 </html>
-
-
-

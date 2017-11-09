@@ -23,38 +23,44 @@
     <meta name="twitter:creator" content="@paulbrownexyz">
     <meta name="twitter:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <meta name="twitter:title" content="Paul Browne - Web developer">
-    <meta property="og:title" content="Paul Browne - Web developer" >
-    <meta property="og:type" content="article" >
-    <meta property="og:site_name" content="paulbrowne.xyz" >
-    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png" >
+    <meta property="og:title" content="Paul Browne - Web developer">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="paulbrowne.xyz">
+    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <!-- /stuff that stays the same -->
 
     <title>html5 gulp boilerplate &middot; paulbrowne.xyz</title>
-    <meta name="description" content="A fullfat html5 gulp boilerplate to get any project up and running" >
+    <meta name="description" content="A fullfat html5 gulp boilerplate to get any project up and running">
     <meta name="twitter:description" content="A fullfat html5 gulp boilerplate to get any project up and running">
-    <meta property="og:description" content="A fullfat html5 gulp boilerplate to get any project up and running" >
-    <meta property="og:url" content="https://paulbrowne.xyz/html5-gulp-boilerplate" >
+    <meta property="og:description" content="A fullfat html5 gulp boilerplate to get any project up and running">
+    <meta property="og:url" content="https://paulbrowne.xyz/html5-gulp-boilerplate">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/github.css">
     <link rel="stylesheet" type="text/css" href="css/ucjs.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
     <style>
         body {
             line-height: 1.4;
             font-family: 'Libre Baskerville', serif;
         }
+
         p {
             font-size: 18px;
         }
+
         code {
             background: #eeefff;
             padding: 2px 5px;
             border-radius: 3px;
         }
+
     </style>
 </head>
 
@@ -94,7 +100,8 @@ git push
             </code>
         </pre>
         <h2>Prerequisite</h2>
-        <p>This boilerplate includes image resizing and optimization, which requires the <a href="https://www.imagemagick.org/script/index.php">imagemagick</a> and <a href="http://www.graphicsmagick.org/">graphicsmagick</a> libraries to be installed on your system. For Mac you can install these via brew</p>
+        <p>This boilerplate includes image resizing and optimization, which requires the <a href="https://www.imagemagick.org/script/index.php">imagemagick</a> and <a href="http://www.graphicsmagick.org/">graphicsmagick</a> libraries to be installed on your
+            system. For Mac you can install these via brew</p>
         <pre>
             <code class="bash">
 brew install imagemagick --build-from-source
@@ -110,7 +117,7 @@ npm run build
             </code>
         </pre>
         <p>This will first download all the dependencies and then build the project. Simple. Open <a href="//localhost:8888">localhost:8888</a> and you should see 'Hello world'</p>
-        <p>Other commands are <br><code>npm run clean</code> - which will delete all files in /dist and /dev, not including images,<br><code>npm run clean-all</code> - which will delete all files in /dist and /dev, including images and <br><code>npm pretty</code> - which will prettify the contents of the <code>/src</code> directory.</p>
+        <p>Other commands are <br><code>npm run clean</code> - which will delete all files in /dist and /dev, not including images,<br><code>npm run clean-all</code> - which will delete all files in /dist and /dev, including images and <br><code>npm pretty</code>            - which will prettify the contents of the <code>/src</code> directory.</p>
         <h2>Project structure</h2>
         <pre>
             <code class="bash">
@@ -139,7 +146,7 @@ package.json
         <h2>Features</h2>
         <h3>Server</h3>
         <p>The boilerplate comes with a fully loaded <a href="https://expressjs.com/">express server</a> for all your developement needs, including https, http2 and gzip compression.</p>
-        <p>The <code>node run build</code> command will fire up 2 servers listening to <a href="//localhost:8888">localhost:8888</a> and serving the <code>/dist</code> directory, and another one listening to <a href="//localhost:8887">localhost:8887</a> and serving the <code>/dev</code> directory</p>
+        <p>The <code>node run build</code> command will fire up 2 servers listening to <a href="//localhost:8888">localhost:8888</a> and serving the <code>/dist</code> directory, and another one listening to <a href="//localhost:8887">localhost:8887</a>            and serving the <code>/dev</code> directory</p>
         <p>If you have https://localhost then express will look for the certificate and key in the <code>.env</code> file in the root directory of the project, and should look something like this</p>
         <pre>
             <code class="bash">
@@ -149,7 +156,8 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
         </pre>
         <p>Mac users can setup ssl for localhost with <a href="https-localhost">these 3 simple commands</a></p>
         <p>If you don't have ssl setup for localhost then express will fallback to http://localhost, without ssl and http2, but still with gzip compression.</p>
-        <p>The <code>/dist</code> directory will contain all the production ready code, minified &amp; combined html, css and js files.<br>The <code>/dev</code> directory contains the same code, only prettified and from the source files (before combining) making development easier. Images are the same in both directories.</p>
+        <p>The <code>/dist</code> directory will contain all the production ready code, minified &amp; combined html, css and js files.<br>The <code>/dev</code> directory contains the same code, only prettified and from the source files (before combining)
+            making development easier. Images are the same in both directories.</p>
 
         <h3>Image optimization</h3>
         <p>All images that are placed in the <code>/src/images</code> directory will be optimized before they are copied to the <code>/dist</code> and <code>/dev</code> directories.</p>
@@ -214,7 +222,7 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
         <p>The build process will also launch a <code>watch</code> process, to re-build the <code>/dev</code> and <code>/dist</code> directories whenever a file is saved.</p>
         <p>This process will only trigger a build for files that have changed. Eg. images wont be reprocessed if a html file is changed.</p>
 
-<h3>Favicons, apple, android and windows icons</h3>
+        <h3>Favicons, apple, android and windows icons</h3>
         <p>In the <code>/icons</code> directory there are placeholder icons etc. To build your own from source I would strongly recommend <a href="https://realfavicongenerator.net/">realfavicongenerator.net</a></p>
 
         <h3>Social meta</h3>
@@ -228,15 +236,19 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-36765884-3');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36765884-3');
+
+    </script>
 
 </body>
 

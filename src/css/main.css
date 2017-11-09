@@ -8,3 +8,7 @@ body {
     display: grid;
     grid-template-columns: 10px repeat(4, 250px 10px);
 }
+
+.hello:world {
+    color: red;
+}

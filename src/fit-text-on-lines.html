@@ -23,26 +23,29 @@
     <meta name="twitter:creator" content="@paulbrownexyz">
     <meta name="twitter:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <meta name="twitter:title" content="Paul Browne - Web developer">
-    <meta property="og:title" content="Paul Browne - Web developer" >
-    <meta property="og:type" content="article" >
-    <meta property="og:site_name" content="paulbrowne.xyz" >
-    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png" >
+    <meta property="og:title" content="Paul Browne - Web developer">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="paulbrowne.xyz">
+    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <!-- /stuff that stays the same -->
 
     <title>fit text on lines &middot; paulbrowne.xyz</title>
-    <meta name="description" content="A simple javascript pluggin that resizes text so that it fits on the desired amount of lines" >
+    <meta name="description" content="A simple javascript pluggin that resizes text so that it fits on the desired amount of lines">
     <meta name="twitter:description" content="A simple javascript pluggin that resizes text so that it fits on the desired amount of lines">
-    <meta property="og:description" content="A simple javascript pluggin that resizes text so that it fits on the desired amount of lines" >
-    <meta property="og:url" content="https://paulbrowne.xyz/fit-text-on-lines" >
+    <meta property="og:description" content="A simple javascript pluggin that resizes text so that it fits on the desired amount of lines">
+    <meta property="og:url" content="https://paulbrowne.xyz/fit-text-on-lines">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/github.css">
     <link rel="stylesheet" type="text/css" href="css/ucjs.css">
     <!-- <script src="js/ucjs.js"></script> -->
     <script src="js/ftol.js"></script>
     <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
     <script>
         WebFontConfig = {
             google: {
@@ -52,6 +55,7 @@
                 fittextonlines();
             }
         };
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
     <style>
@@ -59,25 +63,31 @@
             line-height: 1.4;
             font-family: 'Libre Baskerville', serif;
         }
+
         p {
             font-size: 18px;
         }
+
         code {
             background: #eeefff;
             padding: 2px 5px;
             border-radius: 3px;
         }
+
         h1.js-ftol {
             min-height: 1px;
         }
+
         p.js-ftol {
             min-height: 6px;
             text-align: justify;
         }
+
         p.js-ftol:after {
             content: " 6 lines";
         }
-        @media only screen and (max-width: 45em){
+
+        @media only screen and (max-width: 45em) {
             p.js-ftol {
                 min-height: 9px;
             }
@@ -85,6 +95,7 @@
                 content: " 9 lines";
             }
         }
+
     </style>
 </head>
 
@@ -103,7 +114,8 @@
     </nav>
     <section class="mw-45 m-a m_m-l-1 m_m-r-1">
         <h1 class="js-ftol ta-c">Fit text on lines</h1>
-        <p class="js-ftol">Fit text on lines automatically adjusts the font-size of an element to the maximum size it can be, whilst keeping the text on a specified amount of lines. For example, the above headline is the maximum font-size it can be, whilst staying on one line, and this paragraph will resize to always fit on</p>
+        <p class="js-ftol">Fit text on lines automatically adjusts the font-size of an element to the maximum size it can be, whilst keeping the text on a specified amount of lines. For example, the above headline is the maximum font-size it can be, whilst staying on one
+            line, and this paragraph will resize to always fit on</p>
 
         <p>Simply add the script in the head, and call before the closing body tag</p>
 
@@ -145,7 +157,7 @@ p.js-ftol {
             </code>
         </pre>
 
-        <p>If you are using a custom font - which you probably are - and it comes form google fonts or typescript - which it probably does. Then you'll need to call the <code>fittextonlines()</code> script using the <a href="https://github.com/typekit/webfontloader">WebFontConfig script</a> like so</p>
+        <p>If you are using a custom font - which you probably are - and it comes form google fonts or typescript - which it probably does. Then you'll need to call the <code>fittextonlines()</code> script using the <a href="https://github.com/typekit/webfontloader">WebFontConfig script</a>            like so</p>
 
         <pre>
             <code class="js">
@@ -160,7 +172,7 @@ WebFontConfig = {
             </code>
         </pre>
 
-    <p>Go grab the repo over at <a href="https://github.com/Paul-Browne/fit-text-on-lines">github</a></p>
+        <p>Go grab the repo over at <a href="https://github.com/Paul-Browne/fit-text-on-lines">github</a></p>
     </section>
 
 
@@ -171,15 +183,19 @@ WebFontConfig = {
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-36765884-3');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36765884-3');
+
+    </script>
 
 </body>
 

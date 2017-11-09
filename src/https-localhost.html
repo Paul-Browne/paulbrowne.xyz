@@ -23,38 +23,44 @@
     <meta name="twitter:creator" content="@paulbrownexyz">
     <meta name="twitter:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <meta name="twitter:title" content="Paul Browne - Web developer">
-    <meta property="og:title" content="Paul Browne - Web developer" >
-    <meta property="og:type" content="article" >
-    <meta property="og:site_name" content="paulbrowne.xyz" >
-    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png" >
+    <meta property="og:title" content="Paul Browne - Web developer">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="paulbrowne.xyz">
+    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
     <!-- /stuff that stays the same -->
 
     <title>https://localhost &middot; paulbrowne.xyz</title>
-    <meta name="description" content="How to add ssl to localhost, https://localhost for Mac" >
+    <meta name="description" content="How to add ssl to localhost, https://localhost for Mac">
     <meta name="twitter:description" content="How to add ssl to localhost, https://localhost for Mac">
-    <meta property="og:description" content="How to add ssl to localhost, https://localhost for Mac" >
-    <meta property="og:url" content="https://paulbrowne.xyz/https-localhost" >
+    <meta property="og:description" content="How to add ssl to localhost, https://localhost for Mac">
+    <meta property="og:url" content="https://paulbrowne.xyz/https-localhost">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/github.css">
     <link rel="stylesheet" type="text/css" href="css/ucjs.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
     <style>
         body {
             line-height: 1.4;
             font-family: 'Libre Baskerville', serif;
         }
+
         p {
             font-size: 18px;
         }
+
         code {
             background: #eeefff;
             padding: 2px 5px;
             border-radius: 3px;
         }
+
     </style>
 </head>
 
@@ -108,15 +114,19 @@ alias https-server='http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/l
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-36765884-3');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36765884-3');
+
+    </script>
 
 </body>
 

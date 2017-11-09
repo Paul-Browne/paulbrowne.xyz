@@ -1,12 +1,13 @@
 /*! fit-text-on-lines.js | Paul Browne */
 function fittextonlines() {
-    function bodyHasScrollbar(){
-        if (document.documentElement.getBoundingClientRect().height > window.innerHeight){
+    function bodyHasScrollbar() {
+        if (document.documentElement.getBoundingClientRect().height > window.innerHeight) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
+
     function debouncedResize(b, c) {
         var d = [window.innerWidth];
         return window.addEventListener("resize", function() {
@@ -24,7 +25,7 @@ function fittextonlines() {
         var j = element.length;
         var i = 0;
         var noScrollbar = 0;
-        while (i<j) {
+        while (i < j) {
             element[i].setAttribute("style", "");
             element[i].style.fontSize = "256px";
             var lines = parseFloat(getComputedStyle(element[i]).minHeight) || 1;
@@ -35,6 +36,7 @@ function fittextonlines() {
             var inc = 128;
             var beforeFontSize;
             decreaseFontSize();
+
             function increaseFontSize() {
                 if (inc >= 0.25) {
                     while (linesUsed <= lines && inc >= 0.25) {
@@ -45,11 +47,12 @@ function fittextonlines() {
                             inc = 0.1;
                             lines = 0;
                         }
-                    inc = inc / 2;
+                        inc = inc / 2;
                     }
                     decreaseFontSize();
                 }
             }
+
             function decreaseFontSize() {
                 if (inc >= 0.125) {
                     while (linesUsed > lines && inc >= 0.125) {
@@ -63,22 +66,22 @@ function fittextonlines() {
                             inc = 0.1;
                             linesUsed = 0;
                         }
-                    inc = inc / 2;
+                        inc = inc / 2;
                     }
                     increaseFontSize();
                 }
             }
-            if (bodyHasScrollbar()){
+            if (bodyHasScrollbar()) {
                 noScrollbar++;
             }
             i++;
-            if (document.body.style.overflowY != "scroll" && noScrollbar && i == j){
+            if (document.body.style.overflowY != "scroll" && noScrollbar && i == j) {
                 document.body.style.overflowY = "scroll";
                 noScrollbar = 0;
                 i = 0;
             }
         }
-        if(document.body){
+        if (document.body) {
             document.body.style.overflowY = "";
         }
     })();
