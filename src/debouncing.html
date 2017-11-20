@@ -38,30 +38,37 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/github.css">
-    <link rel="stylesheet" type="text/css" href="css/ucjs.css">
+    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
     <!-- <script src="js/ucjs.js"></script> -->
     <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
 
     <style>
         body {
             line-height: 1.4;
             font-family: 'Libre Baskerville', serif;
         }
+
         p {
             font-size: 18px;
         }
+
         code {
             background: #eeefff;
             padding: 2px 5px;
             border-radius: 3px;
         }
+
         code.nohighlight {
             background: #fff;
             padding: 0;
             border-radius: 0;
         }
+
     </style>
 </head>
 
@@ -197,13 +204,14 @@ function _scroll(a, b) {
 
 
     <script>
-        (function(){
+        (function() {
             function _resize(a, b) {
                 return window.addEventListener("resize", function() {
                     clearTimeout(b),
                         b = setTimeout(a, 150)
                 }), a
             }
+
             function _resize_w(a, b) {
                 var c = [window.innerWidth];
                 return window.addEventListener("resize", function() {
@@ -215,6 +223,7 @@ function _scroll(a, b) {
                     }
                 }), a
             }
+
             function _mousemove(a, b) {
                 return window.addEventListener("mousemove", function() {
                     clearTimeout(b);
@@ -238,30 +247,31 @@ function _scroll(a, b) {
             var deb_mousemove = document.getElementById('deb_mousemove');
             var deb_scroll = document.getElementById('deb_scroll');
 
-            window.addEventListener('resize', function(){
-                norm_resize.innerHTML ++;
+            window.addEventListener('resize', function() {
+                norm_resize.innerHTML++;
             })
-            window.addEventListener('mousemove', function(){
-                norm_mousemove.innerHTML ++;
+            window.addEventListener('mousemove', function() {
+                norm_mousemove.innerHTML++;
             })
-            window.addEventListener('scroll', function(){
-                norm_scroll.innerHTML ++;
+            window.addEventListener('scroll', function() {
+                norm_scroll.innerHTML++;
             })
 
-            _resize(function(){
-                deb_resize.innerHTML ++;
+            _resize(function() {
+                deb_resize.innerHTML++;
             })
-            _resize_w(function(){
-                deb_resize_w.innerHTML ++;
+            _resize_w(function() {
+                deb_resize_w.innerHTML++;
             })
-            _mousemove(function(){
-                deb_mousemove.innerHTML ++;
+            _mousemove(function() {
+                deb_mousemove.innerHTML++;
             })
-            _scroll(function(){
-                deb_scroll.innerHTML ++;
+            _scroll(function() {
+                deb_scroll.innerHTML++;
             })
 
         })();
+
     </script>
 
 
