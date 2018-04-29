@@ -1,36 +1,43 @@
-var gulp         = require('gulp');
-var sass         = require('gulp-sass');
-var less         = require('gulp-less');
-var image        = require('gulp-image');
-var uglify       = require('gulp-uglify');
-var gulpIgnore   = require('gulp-ignore');
-var cssnano      = require('gulp-cssnano');
-var htmlmin      = require('gulp-htmlmin');
-var changed      = require('gulp-changed');
-var imageResize  = require('gulp-image-resize');
-var autoprefixer = require('gulp-autoprefixer');
-var prettify     = require('gulp-jsbeautifier');
-var runSequence  = require('run-sequence');
-var serveStatic  = require('serve-static');
-var compression  = require('compression');
-var fs           = require('file-system');
-var sizeOf       = require('image-size');
-var express      = require('express');
-var http         = require('http');
-var http2        = require('spdy');
-var del          = require('del');
-var opn          = require('opn');
+var gulp           = require('gulp');
+var scss           = require('gulp-sass');
+var less           = require('gulp-less');
+var image          = require('gulp-image');
+var uglify         = require('gulp-uglify');
+var gulpIgnore     = require('gulp-ignore');
+var cssnano        = require('gulp-cssnano');
+var htmlmin        = require('gulp-htmlmin');
+var changed        = require('gulp-changed');
+//var changedInPlace = require('gulp-changed-in-place');
+var imageResize    = require('gulp-image-resize');
+var autoprefixer   = require('gulp-autoprefixer');
+var prettify       = require('gulp-jsbeautifier');
+var runSequence    = require('run-sequence');
+var serveStatic    = require('serve-static');
+var compression    = require('compression');
+var fs             = require('file-system');
+var sizeOf         = require('image-size');
+var express        = require('express');
+var http           = require('http');
+var http2          = require('spdy');
+var del            = require('del');
+var opn            = require('opn');
+var useref         = require('gulp-useref');
+var styleInject    = require('gulp-style-inject');
 
 
 require('dotenv').config();
 
 
 var imgPrefs = {
-    pngquant: true,
-    optipng: false,
+    pngquant: false,
+    /* 
+        disabled zopfli for now, due to 
+        color conversion to palette requested while a color isn't in palette 
+    */
+    optipng: true,
     zopflipng: true,
     jpegRecompress: false,
-    mozjpeg: true,
+    mozjpeg: false,
     guetzli: false,
     gifsicle: false,
     svgo: true,
@@ -46,6 +53,7 @@ gulp.task('server', function(){
                 console.log('.env file not found');
                 console.log("https://localhost:8888 only available when ssl cert and key are found");
                 console.log("http://localhost:8888 in use");
+
                 var dist = express();
                 dist.use(compression())
                 dist.use(serveStatic('./dist', {
@@ -54,6 +62,7 @@ gulp.task('server', function(){
                 }))
                 var disthttpsServer = http.createServer(dist);
                 disthttpsServer.listen(8888);
+
                 var dev = express();
                 dev.use(compression())
                 dev.use(serveStatic('./dev', {
@@ -62,6 +71,15 @@ gulp.task('server', function(){
                 }))
                 var devhttpsServer = http.createServer(dev);
                 devhttpsServer.listen(8887);
+
+                var styleguide = express();
+                styleguide.use(compression())
+                styleguide.use(serveStatic('./styleguide', {
+                    'extensions': ['html'],
+                    'maxAge': 3600000
+                }))
+                var styleguidehttpsServer = http.createServer(styleguide);
+                styleguidehttpsServer.listen(8889);
             }
         } else {
             fs.readFile('./.env', 'utf8', (err, data) => {
@@ -83,6 +101,7 @@ gulp.task('server', function(){
                     var disthttpsServer = http.createServer(dist);
                     disthttpsServer.listen(8888);
                     opn('http://localhost:8888');
+
                     var dev = express();
                     dev.use(compression())
                     dev.use(serveStatic('./dev', {
@@ -92,6 +111,16 @@ gulp.task('server', function(){
                     var devhttpsServer = http.createServer(dev);
                     devhttpsServer.listen(8887);
                     opn('http://localhost:8887');
+
+                    var styleguide = express();
+                    styleguide.use(compression())
+                    styleguide.use(serveStatic('./styleguide', {
+                        'extensions': ['html'],
+                        'maxAge': 3600000
+                    }))
+                    var styleguidehttpsServer = http.createServer(styleguide);
+                    styleguidehttpsServer.listen(8889);
+                    opn('http://localhost:8889');
                 } else {
                     sslCrt = process.env.HOME + process.env.SSL_CRT_PATH
                     sslKey = process.env.HOME + process.env.SSL_KEY_PATH
@@ -120,85 +149,112 @@ gulp.task('server', function(){
                     devhttpsServer.listen(8887);
                     console.log("https://localhost:8887");
                     //opn('https://localhost:8887');
+
+                    var styleguide = express();
+                    styleguide.use(compression())
+                    styleguide.use(serveStatic('./styleguide', {
+                        'extensions': ['html'],
+                        'maxAge': 3600000
+                    }))
+                    var styleguidehttpsServer = http2.createServer(credentials, styleguide);
+                    styleguidehttpsServer.listen(8889);
+                    console.log("https://localhost:8889");
+                    //opn('https://localhost:8887');
                 }
             })
         }
     })
 })
 
+
+var message = function(file) {
+    console.log(file.path);
+    return false;
+}
+
+
+
 // less compilation + minification
 
 gulp.task('less', function () {
-  return gulp.src('src/less/**/*.less')
-    .pipe(changed('dist/css'))
+  return gulp.src('src/**/*.less')
+    .pipe(changed('dist', {extension: '.css'}))
+    .pipe(gulpIgnore(message))
     .pipe(less())
     .pipe( autoprefixer({
             browsers: ['>1%'],
             cascade: false
     }))
-    .pipe(gulp.dest('dev/css'))
+    .pipe(gulp.dest('dev'))
+    //.pipe(gulp.dest('styleguide/css'))
     .pipe(cssnano())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist'))
 })
 
-// sass compilation + minification
+// scss compilation + minification
 
-gulp.task('sass', function () {
-  return gulp.src('src/sass/**/*.scss')
-    .pipe(changed('dist/css'))
-    .pipe(sass())
+gulp.task('scss', function () {
+  return gulp.src('src/**/*.scss')
+    .pipe(changed('dist', {extension: '.css'}))
+    .pipe(gulpIgnore(message))
+    .pipe(scss())
     .pipe(autoprefixer({
             browsers: ['>1%'],
             cascade: false
     }))
-    .pipe(gulp.dest('dev/css'))
+    .pipe(gulp.dest('dev'))
+    //.pipe(gulp.dest('styleguide/css'))
     .pipe(cssnano())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist'))
 })
 
 // css minification
 
 gulp.task('css', function() {
-  return gulp.src('src/css/**/*.css')
-  .pipe(changed('dist/css'))
-  .pipe(autoprefixer({
+  return gulp.src('src/**/*.css')
+    .pipe(changed('dist'))
+    .pipe(gulpIgnore(message))
+    .pipe(autoprefixer({
     browsers: ['>1%'],
     cascade: false
-  }))
-  .pipe(gulp.dest('dev/css'))
-  .pipe(cssnano())
-  .pipe(gulp.dest('dist/css'))
+    }))
+    .pipe(gulp.dest('dev'))
+    .pipe(cssnano())
+    .pipe(gulp.dest('dist'))
 })
 
-// file combining
-// TODO
+// .css to style element
 
-//var concat = require('gulp-concat');
 
-// gulp.task('combine', function() {
-//   return gulp.src('dist/css/**/*.css')
-//   .pipe(concat('comb.css'))
-//   .pipe(gulp.dest('dist/css'))
+// gulp.task('style', function() {
+//   return gulp.src("src/**/*.html")
+//   .pipe(changed('dist'))
+//   .pipe(gulpIgnore(message))
+//   .pipe(styleInject())
+//   .pipe(gulp.dest("dist"))
 // })
+
 
 // js minification + uglification
 
 gulp.task('js', function() {
-  return gulp.src('src/js/**/*.js')
-  .pipe(changed('dist/js'))
-  .pipe(gulp.dest('dev/js'))
+  return gulp.src('src/**/*.js')
+  .pipe(changed('dist'))
+  .pipe(gulpIgnore(message))
+  .pipe(gulp.dest('dev'))
   .pipe(uglify())
-  .pipe(gulp.dest('dist/js'))
+  .pipe(gulp.dest('dist'))
 })
 
 // image optimization
 
 gulp.task('images', function() {
-  return gulp.src('src/images/**/*.{png,jpg,jpeg,gif,svg}')
-  .pipe(changed('dist/images'))
+  return gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
+  .pipe(changed('dist'))
+  .pipe(gulpIgnore(message))
   .pipe(image(imgPrefs))
-  .pipe(gulp.dest('dist/images'))
-  .pipe(gulp.dest('dev/images'))
+  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('dev'))
 })
 
 // html minification
@@ -206,6 +262,8 @@ gulp.task('images', function() {
 gulp.task('html', function() {
   return gulp.src('src/**/*.html')
   .pipe(changed('dist'))
+  .pipe(gulpIgnore(message))
+  //.pipe(styleInject())
   .pipe(gulp.dest('dev'))
   .pipe(htmlmin({
     collapseWhitespace: true,
@@ -216,11 +274,26 @@ gulp.task('html', function() {
   .pipe(gulp.dest('dist'))
 })
 
+// useref test
+
+gulp.task('combine', function(){
+    return gulp.src('dist/**/*.html')
+    .pipe(useref())
+    .pipe(htmlmin({
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true
+    }))
+    .pipe(gulp.dest('dist'))
+})
+
 // copy everything else
 
 gulp.task('other', function() {
-  return gulp.src(['src/**/*.*', '!src/**/*.html', '!src/**/*.css', '!src/**/*.js', '!src/**/*.less', '!src/**/*.scss', '!src/images/*.png', '!src/images/*.jpg', '!src/images/*.jpeg', '!src/images/*.gif', '!src/images/*.svg' ])
+  return gulp.src(['src/**/*.*', '!src/**/*.html', '!src/**/*.css', '!src/**/*.js', '!src/**/*.less', '!src/**/*.scss', '!src/**/*.png', '!src/**/*.jpg', '!src/**/*.jpeg', '!src/**/*.gif', '!src/**/*.svg' ])
   .pipe(changed('dist'))
+  .pipe(gulpIgnore(message))
   .pipe(gulp.dest('dev'))
   .pipe(gulp.dest('dist'))
 })
@@ -241,20 +314,20 @@ gulp.task('clean:dist', function() {
 })
 
 gulp.task('clean:code', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*', 'dev/**/*', '!dev/images', '!dev/images/**/*'])
+  return del.sync(['dist/**/*.*', '!dist/**/*.png', '!dist/**/*.jpg', '!dist/**/*.jpeg', '!dist/**/*.gif', '!dist/**/*.svg', 'dev/**/*.*', '!dev/**/*.png', '!dev/**/*.jpg', '!dev/**/*.jpeg', '!dev/**/*.gif', '!dev/**/*.svg'])
 })
 
 
 // Prettify css js html
 
 gulp.task('prettify:dev', function() {
-  return gulp.src('dev/**/*.+(html|css|js)')
+  return gulp.src('dev/**/*.+(html|css|js|less|scss)')
     .pipe(prettify())
     .pipe(gulp.dest('dev'))
 })
 
 gulp.task('prettify:src', function() {
-  return gulp.src('src/**/*.+(html|css|js)')
+  return gulp.src('src/**/*.+(html|css|js|less|scss)')
     .pipe(prettify())
     .pipe(gulp.dest('src'))
 })
@@ -263,131 +336,191 @@ gulp.task('prettify:src', function() {
 
 
 /* TODO optimize */
-var lt128 = function (file) {
-    var dimensions = sizeOf(file.path);
-    if(dimensions.width > 128) {
-        return false;
-    }else{
+
+
+
+var lessThan100 = function (file) {
+    if(sizeOf(file.path).width <= 100) {
         return true;
+    }else{
+        return false;
     }
 };
-var lt256 = function (file) {
-    var dimensions = sizeOf(file.path);
-    if(dimensions.width > 256) {
-        return false;
-    }else{
+var lessThan200 = function (file) {
+    if(sizeOf(file.path).width <= 200) {
         return true;
+    }else{
+        return false;
     }
 };
-var lt512 = function (file) {
-    var dimensions = sizeOf(file.path);
-    if(dimensions.width > 512) {
-        return false;
-    }else{
+var lessThan400 = function (file) {
+    if(sizeOf(file.path).width <= 400) {
         return true;
+    }else{
+        return false;
     }
 };
-var lt1024 = function (file) {
-    var dimensions = sizeOf(file.path);
-    if(dimensions.width > 1024) {
-        return false;
-    }else{
+var lessThan800 = function (file) {
+    if(sizeOf(file.path).width <= 800) {
         return true;
+    }else{
+        return false;
     }
 };
-var lt2048 = function (file) {
-    var dimensions = sizeOf(file.path);
-    if(dimensions.width > 2048) {
-        return false;
-    }else{
+var lessThan1200 = function (file) {
+    if(sizeOf(file.path).width <= 1200) {
         return true;
+    }else{
+        return false;
+    }
+};
+var lessThan1600 = function (file) {
+    if(sizeOf(file.path).width <= 1600) {
+        return true;
+    }else{
+        return false;
+    }
+};
+var lessThan2000 = function (file) {
+    if(sizeOf(file.path).width <= 2000) {
+        return true;
+    }else{
+        return false;
+    }
+};
+var lessThan2400 = function (file) {
+    if(sizeOf(file.path).width <= 2400) {
+        return true;
+    }else{
+        return false;
     }
 };
 
 
-gulp.task('resize128', function() {
+
+
+gulp.task('resize100', function() {
   return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
-    .pipe(changed('dist/images/128'))
-    .pipe(gulpIgnore(lt128))
+    .pipe(changed('dist/images/100'))
+    .pipe(gulpIgnore(lessThan100))
     .pipe(imageResize({
-      width : 128
+      width : 100
     }))
     .pipe(image(imgPrefs))
-    .pipe(gulp.dest('dev/images/128'))
-    .pipe(gulp.dest('dist/images/128'))
+    .pipe(gulp.dest('dev/images/100'))
+    .pipe(gulp.dest('dist/images/100'))
 })
 
-gulp.task('resize256', function() {
+gulp.task('resize200', function() {
   return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
-    .pipe(changed('dist/images/256'))
-    .pipe(gulpIgnore(lt256))
+    .pipe(changed('dist/images/200'))
+    .pipe(gulpIgnore(lessThan200))
     .pipe(imageResize({
-      width : 256
+      width : 200
     }))
     .pipe(image(imgPrefs))
-    .pipe(gulp.dest('dev/images/256'))
-    .pipe(gulp.dest('dist/images/256'))
+    .pipe(gulp.dest('dev/images/200'))
+    .pipe(gulp.dest('dist/images/200'))
 })
 
-gulp.task('resize512', function() {
+gulp.task('resize400', function() {
   return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
-    .pipe(changed('dist/images/512'))
-    .pipe(gulpIgnore(lt512))
+    .pipe(changed('dist/images/400'))
+    .pipe(gulpIgnore(lessThan400))
     .pipe(imageResize({
-      width : 512
+      width : 400
     }))
     .pipe(image(imgPrefs))
-    .pipe(gulp.dest('dev/images/512'))
-    .pipe(gulp.dest('dist/images/512'))
+    .pipe(gulp.dest('dev/images/400'))
+    .pipe(gulp.dest('dist/images/400'))
 })
 
-gulp.task('resize1024', function() {
+gulp.task('resize800', function() {
   return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
-    .pipe(changed('dist/images/1024'))
-    .pipe(gulpIgnore(lt1024))
+    .pipe(changed('dist/images/800'))
+    .pipe(gulpIgnore(lessThan800))
     .pipe(imageResize({
-      width : 1024
+      width : 800
     }))
     .pipe(image(imgPrefs))
-    .pipe(gulp.dest('dev/images/1024'))
-    .pipe(gulp.dest('dist/images/1024'))
+    .pipe(gulp.dest('dev/images/800'))
+    .pipe(gulp.dest('dist/images/800'))
 })
 
-gulp.task('resize2048', function() {
+gulp.task('resize1200', function() {
   return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
-    .pipe(changed('dist/images/2048'))
-    .pipe(gulpIgnore(lt2048))
+    .pipe(changed('dist/images/1200'))
+    .pipe(gulpIgnore(lessThan1200))
     .pipe(imageResize({
-      width : 2048
+      width : 1200
     }))
     .pipe(image(imgPrefs))
-    .pipe(gulp.dest('dev/images/2048'))
-    .pipe(gulp.dest('dist/images/2048'))
+    .pipe(gulp.dest('dev/images/1200'))
+    .pipe(gulp.dest('dist/images/1200'))
+})
+
+gulp.task('resize1600', function() {
+  return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
+    .pipe(changed('dist/images/1600'))
+    .pipe(gulpIgnore(lessThan1600))
+    .pipe(imageResize({
+      width : 1600
+    }))
+    .pipe(image(imgPrefs))
+    .pipe(gulp.dest('dev/images/1600'))
+    .pipe(gulp.dest('dist/images/1600'))
+})
+
+gulp.task('resize2000', function() {
+  return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
+    .pipe(changed('dist/images/2000'))
+    .pipe(gulpIgnore(lessThan2000))
+    .pipe(imageResize({
+      width : 2000
+    }))
+    .pipe(image(imgPrefs))
+    .pipe(gulp.dest('dev/images/2000'))
+    .pipe(gulp.dest('dist/images/2000'))
+})
+
+gulp.task('resize2400', function() {
+  return gulp.src('src/images/**/*.{jpg,jpeg,png,gif}')
+    .pipe(changed('dist/images/2400'))
+    .pipe(gulpIgnore(lessThan2400))
+    .pipe(imageResize({
+      width : 2400
+    }))
+    .pipe(image(imgPrefs))
+    .pipe(gulp.dest('dev/images/2400'))
+    .pipe(gulp.dest('dist/images/2400'))
 })
 
 gulp.task('resize', function(callback) {
   runSequence(
-    'resize2048',
-    'resize1024',
-    'resize512',
-    'resize256',
-    'resize128',
+    'resize2400',
+    'resize2000',
+    'resize1600',
+    'resize1200',
+    'resize800',
+    'resize400',
+    'resize200',
+    'resize100',
     callback
   )
 })
-
 
 // Build
 
 gulp.task('build', function(callback) {
   runSequence(
     'less',
-    'sass',
+    'scss',
     'css',
     'js',
     'images',
     'resize',
     'html',
+    'combine',
     'other',
     'prettify:dev',
     callback
