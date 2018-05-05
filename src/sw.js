@@ -2,7 +2,12 @@ var cacheName = 'v1::static';
 self.addEventListener('install', function (e) {
 
   e.waitUntil(caches.open(cacheName).then(function (cache) {
-    return cache.addAll(['/']).then(function () {
+    return cache.addAll([
+      '/',
+      'css/main.css',
+      'css/normalize.css',
+      'css/shrthnd.css'
+      ]).then(function () {
       console.log("test");
       return self.skipWaiting();
     });
