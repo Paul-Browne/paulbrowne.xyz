@@ -15,5 +15,5 @@
     "theme_color": "#666666",
     "background_color": "#666666",
     "start_url": "/",
-    "display": "minimal-ui"
+    "display": "standalone"
 }
