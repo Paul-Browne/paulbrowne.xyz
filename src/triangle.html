@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>triangles</title>
+	<style type="text/css">
+		body {margin: 0;}
+		body.paint{
+			cursor: url(images/Brush-icon.png), auto;
+		}
+		body.delete{
+			cursor: url(images/rubber.png), auto;
+		}
+		use{
+			stroke: #000;			
+			fill: #fff;
+			will-change: fill;
+			stroke-width: 0.25;
+		}
+ 		use:hover{
+			stroke: #f00;			
+			stroke-width: 2;			
+		}
+		svg{
+			width: 100vw;
+			height: 100vh;
+			vertical-align: middle;
+		}
+		#controls{
+			position: absolute;
+			top: 0;
+			left: 0;
+
+		}
+	</style>
+</head>
+<body>
+	<svg>
+		<defs>
+			<path id="p" d="M0 -50 L86.6 0  L0 50 Z" />
+			<path id="d" d="M0 0 L86.6 -50 L86.6 50 Z" />
+		</defs>
+		<g id="canvas">
+			
+		</g>
+	</svg>
+	
+	<div id="controls">
+		<input type="color"  value="#0000ff">
+		<input type="number" value="5" step="0.1" id="gap">
+		<input type="number" value="0.3" step="0.01" id="scale">
+	</div>
+	
+	<script type="text/javascript">
+		!function(){
+
+		document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
+
+		function requestFullscreen(element) {
+			if (element.requestFullscreen) {
+				element.requestFullscreen();
+			} else if (element.mozRequestFullScreen) {
+				element.mozRequestFullScreen();
+			} else if (element.webkitRequestFullScreen) {
+				element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			}
+		}
+		
+		var activeColor = "#000";
+		var colorInputValue = document.querySelector("input[type='color']");
+		colorInputValue.addEventListener("change", function(e){
+			activeColor = e.target.value;
+		})
+
+				
+		//var oldgap = gap;
+		// gapInputValue.addEventListener("change", function(e){
+		// 	oldgap = gap;
+		// 	gap = e.target.value;
+		// 	var allUse = document.querySelectorAll("#canvas use");
+		// 	var q = allUse.length;
+		// 	while(q--){
+		// 		var currentX = allUse[q].getAttribute("x");				
+		// 		var currentY = allUse[q].getAttribute("y");
+				
+		// 		allUse[q].setAttribute("x", (parseFloat(currentX) / (86.6 + parseFloat(oldgap))) * (86.6 + parseFloat(gap)) ) ;
+		// 		allUse[q].setAttribute("y", (parseFloat(currentY) / (50 + parseFloat(oldgap))) * (50 + parseFloat(gap)) );
+				
+				
+		// 	}
+		// })		
+
+
+		var gapInputValue = document.getElementById("gap");
+		var scaleInputValue = document.getElementById("scale");
+
+		var canvas = document.getElementById("canvas");
+		var svgns = "http://www.w3.org/2000/svg";
+
+		var gap = 5;
+		var scale = 0.3;		
+		function generateCanvas(scale, gap){
+			canvas.innerHTML = "";
+			var wW = window.innerWidth;
+			var wH = window.innerHeight;
+			var i = Math.round( ( (wW * (1/scale) ) /  ( 86.6 + gap  ) ) + 0.5 );
+			while(i--){
+				var j = Math.round( ( (wH * (1/scale) ) / ( 50 + gap ) ) + 1.5);
+				while(j--){
+					var use = document.createElementNS(svgns, "use");
+					use.setAttribute("y", (j * (50 + gap)) );
+					use.setAttribute("x", (i * (86.6 + gap)));
+					use.style.transform = "scale(" + scale + ")";					
+					if(j % 2){					
+						if(i % 2){
+							use.setAttribute("href", "#p");
+						}else{
+							use.setAttribute("href", "#d");
+						}
+					}else{
+						if(i % 2){
+							use.setAttribute("href", "#d");
+						}else{
+							use.setAttribute("href", "#p");
+						}
+					}
+					canvas.appendChild(use);				
+				}
+			}
+		}
+		generateCanvas(scale, gap);
+		gapInputValue.addEventListener("change", function(e){
+			gap = parseFloat(e.target.value);
+			generateCanvas(scale, gap);
+		});
+		scaleInputValue.addEventListener("change", function(e){
+			scale = parseFloat(e.target.value);
+			generateCanvas(scale, gap);
+		});
+
+
+		var active = false;
+		var pressing = false;
+		var mouseDown = false;
+		var deltePressed = false;
+		var body = document.getElementsByTagName("body")[0];
+		window.addEventListener("keypress", function(e){		
+			if(e.which == 32){
+				active = !active;				
+				deltePressed = false;
+				body.classList.remove("delete");
+				if(active){
+					body.classList.add("paint");
+				}else{
+					body.classList.remove("paint");
+				}
+			}			
+		})
+		window.addEventListener("mousemove", function(e){
+			if(active){				
+				e.target.style.fill = activeColor;
+			}
+			if(deltePressed){			
+				e.target.style.fill = "#fff";
+			}
+		})
+		window.addEventListener("keydown", function(e){
+			console.log("keydown: ", e.which, " ", e.key);
+			if(e.which == 70){
+				if (document.fullscreenEnabled) {
+					requestFullscreen(document.documentElement);
+				}
+			}
+			if(e.which == 8 || e.which == 69){
+				deltePressed = !deltePressed;
+				active = false;
+				body.classList.remove("paint");
+				if(deltePressed){
+					body.classList.add("delete");
+				}else{
+					body.classList.remove("delete");
+				}
+			}
+		})
+
+	}();
+	</script> 
+	</body>
+</html>
+
+
