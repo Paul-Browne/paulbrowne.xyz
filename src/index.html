@@ -60,7 +60,7 @@
             // document.getElementsByTagName('head')[0].appendChild(s);
 
             setTimeout(function(){
-                            
+
                 var OneSignal = window.OneSignal || [];
                 OneSignal.push(["init", {
                     appId: "9b09f370-052b-4925-a297-9d9d35bda12b",      //paulbrowne.xyz
@@ -93,7 +93,10 @@
                 });
                                         
                 OneSignal.push(function() {                    
-                    OneSignal.sendTags({"device": WURFL.complete_device_name});
+                    OneSignal.sendTags({
+                        "device": WURFL.complete_device_name,
+                        "is_mobile": WURFL.is_mobile
+                    });
                 });
                 
 
