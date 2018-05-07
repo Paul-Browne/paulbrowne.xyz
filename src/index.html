@@ -60,8 +60,7 @@
             // document.getElementsByTagName('head')[0].appendChild(s);
 
             setTimeout(function(){
-
-                console.log(window.OneSignal);
+                            
                 var OneSignal = window.OneSignal || [];
                 OneSignal.push(["init", {
                     appId: "9b09f370-052b-4925-a297-9d9d35bda12b",      //paulbrowne.xyz
@@ -92,11 +91,8 @@
                 OneSignal.push(function() {
                     OneSignal.showHttpPrompt();
                 });
-
-                                    
-                console.log("hello " + WURFL.complete_device_name);
-                OneSignal.push(function() {
-                    console.log(WURFL.complete_device_name);
+                                        
+                OneSignal.push(function() {                    
                     OneSignal.sendTags({"device": WURFL.complete_device_name});
                 });
                 
