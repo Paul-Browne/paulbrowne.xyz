@@ -43,9 +43,25 @@
 
     <script type="text/javascript">if ('serviceWorker' in navigator) {window.addEventListener('load', function() {navigator.serviceWorker.register('sw.js')});}</script>
 
+<script type="text/javascript" data-cfasync="false">
+    var _foxpush = _foxpush || [];
+    _foxpush.push(['_setDomain', 'paulbrownexyz']);
+
+    (function(){
+        var foxscript = document.createElement('script');
+        foxscript.src = '//cdn.foxpush.net/sdk/foxpush_SDK_min.js';
+        foxscript.type = 'text/javascript';
+        foxscript.async = 'true';
+        var fox_s = document.getElementsByTagName('script')[0];
+        fox_s.parentNode.insertBefore(foxscript, fox_s);
+    })();
+</script>
+
+
     
+<!-- 
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <script>
+     <script>
       var OneSignal = window.OneSignal || [];
       OneSignal.push(function() {
         OneSignal.init({
@@ -56,7 +72,8 @@
           },
         });
       });
-    </script>
+    </script> 
+-->
 
     <style>
         #t-1,
