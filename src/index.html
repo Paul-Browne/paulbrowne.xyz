@@ -179,6 +179,13 @@
                     ga('send', 'pageview',
                       { 'dimension3': WURFL.complete_device_name }
                     );
+
+                    ga('send', {
+                      hitType: 'event',
+                      eventCategory: 'device',
+                      eventAction: WURFL.complete_device_name
+                    });
+
                 }, 1000);
                 var OneSignal = window.OneSignal || [];
                 OneSignal.push(["init", {
