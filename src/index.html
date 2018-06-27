@@ -176,11 +176,11 @@
             function loadedWURFL(){                
                 setTimeout(function(){
                     console.log('sent to GA: ' + WURFL.complete_device_name);
-                    ga('send', 'pageview',
+                    gtag('send', 'pageview',
                       { 'dimension3': WURFL.complete_device_name }
                     );
 
-                    ga('send', {
+                    gtag('send', {
                       hitType: 'event',
                       eventCategory: 'device',
                       eventAction: WURFL.complete_device_name
