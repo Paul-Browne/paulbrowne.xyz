@@ -7,7 +7,6 @@ var gulpIgnore     = require('gulp-ignore');
 var cssnano        = require('gulp-cssnano');
 var htmlmin        = require('gulp-htmlmin');
 var changed        = require('gulp-changed');
-//var changedInPlace = require('gulp-changed-in-place');
 var imageResize    = require('gulp-image-resize');
 var autoprefixer   = require('gulp-autoprefixer');
 var prettify       = require('gulp-jsbeautifier');
