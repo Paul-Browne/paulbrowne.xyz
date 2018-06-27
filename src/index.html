@@ -173,12 +173,13 @@
             // s.src = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
             // document.getElementsByTagName('head')[0].appendChild(s);
 
-            function loadedWURFL(){
-                console.log('sent to GA: ' + WURFL.complete_device_name);
-                ga('send', 'pageview',
-                  { 'dimension3': WURFL.complete_device_name }
-                );
-
+            function loadedWURFL(){                
+                setTimeout(function(){
+                    console.log('sent to GA: ' + WURFL.complete_device_name);
+                    ga('send', 'pageview',
+                      { 'dimension3': WURFL.complete_device_name }
+                    );
+                }, 1000);
                 var OneSignal = window.OneSignal || [];
                 OneSignal.push(["init", {
                     appId: "9b09f370-052b-4925-a297-9d9d35bda12b",      //paulbrowne.xyz
