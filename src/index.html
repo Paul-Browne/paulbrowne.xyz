@@ -174,7 +174,7 @@
             // document.getElementsByTagName('head')[0].appendChild(s);
 
             function loadedWURFL(){
-
+                console.log('sent to GA: ' + WURFL.complete_device_name);
                 ga('send', 'pageview',
                   { 'dimension3': WURFL.complete_device_name }
                 );
