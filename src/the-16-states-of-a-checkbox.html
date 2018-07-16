@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon stuff -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#666">
+    <link rel="manifest" href="icons/manifest.json">
+    <link rel="shortcut icon" href="icons/favicon.ico">
+    <meta name="msapplication-config" content="icons/browserconfig.xml">
+    <meta name="theme-color" content="#666666">
+    <!-- /favicon stuff -->
+
+    <!-- Social media meta stuff -->
+    <!-- stuff that stays the same -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@paulbrownexyz">
+    <meta name="twitter:creator" content="@paulbrownexyz">
+    <meta name="twitter:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
+    <meta name="twitter:title" content="Paul Browne - Web developer">
+    <meta property="og:title" content="Paul Browne - Web developer">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="paulbrowne.xyz">
+    <meta property="og:image" content="https://paulbrowne.xyz/icons/android-chrome-192x192.png">
+    <!-- /stuff that stays the same -->
+
+    <title>16 states of a checkbox &middot; paulbrowne.xyz</title>
+    <meta name="description" content="How to visualize the 16 states of a checkbox">
+    <meta name="twitter:description" content="How to visualize the 16 states of a checkbox">
+    <meta property="og:description" content="How to visualize the 16 states of a checkbox">
+    <meta property="og:url" content="https://paulbrowne.xyz/the-16-states-of-a-checkbox">
+    <!-- /Social media meta stuff -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/github.css">
+    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+    </script>
+    <style>
+        body {
+            line-height: 1.4;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        code {
+            background: #eeefff;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }        
+
+    </style>
+
+    <style type="text/css">
+        /* resets */
+
+        fieldset,
+        legend,
+        input {
+            outline: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1;
+            margin: 0;
+        }
+
+        select {
+            text-transform: none;
+        }
+
+        legend {
+            box-sizing: border-box;
+            color: inherit;
+            display: table;
+            max-width: 100%;
+            white-space: normal;
+        }
+
+        progress {
+            vertical-align: baseline;
+        }
+
+        textarea {
+            overflow: auto;
+        }
+
+        [type="checkbox"],
+        [type="radio"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        [type="number"]::-webkit-inner-spin-button,
+        [type="number"]::-webkit-outer-spin-button {
+            height: auto;
+        }
+
+        [type="search"] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px;
+        }
+
+        [type="search"]::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit;
+        }
+
+
+
+
+
+        /* end resets */
+
+        label {
+            display: inline-block;
+        }
+
+        input,
+        label .prefix,
+        label .suffix,
+        label .label {
+            line-height: 40px;
+            height: 40px;
+            padding: 0 12px;
+            font-size: 16px;
+            border: 1px solid #999;
+            box-sizing: border-box;
+            font-weight: 300;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        input.round {
+            border-radius: 0.3em;
+        }
+
+        label .prefix,
+        label .suffix {
+            background: #ddd;
+        }
+
+        label img.prefix,
+        label img.suffix {
+            padding: 0.4rem;
+        }
+
+        label .prefix {
+            border-right: 0;
+        }
+
+        label .suffix {
+            border-left: 0;
+        }
+
+
+        input.extra-small,
+        label .prefix.extra-small,
+        label .suffix.extra-small,
+        label .label.extra-small {
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            padding: 0 8px;
+        }
+
+        input.small,
+        label .prefix.small,
+        label .suffix.small,
+        label .label.small {
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        input.large,
+        label .prefix.large,
+        label .suffix.large,
+        label .label.large {
+            height: 45px;
+            line-height: 45px;
+            font-size: 18px;
+            padding: 0 14px;
+        }
+
+        input.extra-large,
+        label .prefix.extra-large,
+        label .suffix.extra-large,
+        label .label.extra-large {
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+            padding: 0 16px;
+        }
+
+        label .prefix.round {
+            border-radius: 0.3rem 0 0 0.3rem;
+        }
+
+
+        label .suffix.round,
+        label .prefix+input.round {
+            border-radius: 0 0.3rem 0.3rem 0;
+        }
+
+
+
+        label .label {
+            border: 0;
+            padding-left: 0!important;
+        }
+
+        label .label.above {
+            display: block;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        label .checkbox,
+        label .radio {
+            display: inline-block;
+            width: 25px;
+            height: 25px;    
+            vertical-align: middle;
+            box-sizing: border-box;    
+            background-size: contain;
+            margin-right: 0.33rem;
+        }
+
+        label .checkbox.extra-small,
+        label .radio.extra-small {
+            width: 15px;
+            height: 15px;    
+        }
+
+        label .checkbox.small,
+        label .radio.small {
+            width: 20px;
+            height: 20px;    
+        }
+
+        label .checkbox.large,
+        label .radio.large {
+            width: 30px;
+            height: 30px;    
+        }
+
+        label .checkbox.extra-large,
+        label .radio.extra-large {
+            width: 35px;
+            height: 35px;    
+        }
+
+
+        label .checkbox {
+            background-image: url("/images/check_box.svg");
+        }
+
+        label :focus+.checkbox,
+        label :active+.checkbox {
+            outline: 4px solid rgba(100, 25, 255, 0.2);
+            outline-offset: -4px;
+        }
+
+
+        label :checked+.checkbox{
+            background-image: url("/images/check_box_checked.svg");
+        }
+
+        label .radio {
+            background-image: url("/images/radio_button_unchecked.svg");
+        }
+
+        label :checked+.radio {
+            background-image: url("/images/check_circle.svg");
+        }
+
+        [type=radio],
+        [type=checkbox],
+        [type=radio]:focus,
+        [type=checkbox]:focus {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+            white-space: nowrap;
+        }
+
+        label.test [type=checkbox] ~ .label *{
+            color: rgba(0,0,0,0.1);
+        }
+
+        label.test [type=checkbox]:hover ~ .label .hover,
+        label.test [type=checkbox]:focus ~ .label .focus,
+        label.test [type=checkbox]:active ~ .label .active,
+        label.test [type=checkbox]:checked ~ .label .checked{
+            color: #000;
+        }        
+
+    </style>
+
+</head>
+
+<body>
+    <nav class="d-f ai-c jc-sb mw-45 m-a m_m-l-1 m_m-r-1 m-t-05">
+        <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
+        <div>
+            <a class="td-n m-r-1" href="contents">contents</a>
+
+            <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
+
+            <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
+
+            <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
+        </div>
+    </nav>
+    <section class="mw-45 m-a m_m-l-1 m_m-r-1">
+        <h1 class="ta-c">the 16 states of a checkbox</h1>
+        <p class="">Yes, thats right, there are 16 possible states a checkbox can have! gotta catch 'em all!</p>
+        
+        <h3>1. no state</h3>
+        <p>Ok, so this one is a bit of a cheat, I'm counting one state when the checkbox isn't in :hover, :focus, :active or :checked. boo.</p>
+
+        <h3>2. :hover</h3>
+        <p>Ok, so lets start with a simple one. hover is only when the cursor is hovering over a checkbox that isn't in focus and hasn't been checked. thats it.</p>
+
+
+        <h3>3. :focus</h3>
+        <p>All inputs can have :focus. It's more obvious when a text input or textarea is in focus because there is usually a blinking cursor in the area where you're about to type. This lets you move your cursor away, whilst remaining in "focus". An input will lose focus when you click, or "tab" somewhere else.</p>
+        <p>focus is kinda like a way of communicating to the user that "hey, if you press spacebar or type a letter, this is the element that will be affected"</p>        
+
+        <h3>4. :active</h3>
+        <p>the :active state is when you are "in the processes" of checking or unchecking the box, by means of either clicking the mouse or some keyboard interaction (usually by pressing spacebar). Basically that split second between pressing and releasing.</p>
+        <p>to get the :active state <em>by itself</em> is actually not that common, since you have to click (hold down the mouse button) and simultaneously move the mouse away from the checkbox, so that it's no longer hovering over it.</p>
+        <p>fun fact: when you mouse click (hold the mouse down) on a checkbox it will become active, but lose focus. But when you press (hold down) spacebar, the element will not lose focus... go figure.</p>
+
+        <h3>5. :checked</h3>
+        <p>This is when the checkbox has a tick in it.</p>
+        <p>The :checked state is only applied <em>after</em> the mouse or spacebar has been released.</p>
+
+        <h3>6. :hover:focus</h3>
+        <p>hover and focus. This is when the cursor is hovering over a checkbox that happens to be in focus. The two actually have nothing to do with each other, you can be hovering over the checkbox whilst another form element is in focus, and vice-versa.</p>
+
+        <h3>7. :hover:active</h3>
+        <p>As previously mentioned, using the mouse to click a checkbox will add the active state, but remove the focus state, the focus state is added again after you release the mouse. To get both hover and active you simply hold down the mouse on an unchecked checkbox.</p>
+
+        <h3>8. :hover:checked</h3>
+        <p>Simple. Hover over an unfocused checked checkbox.</p>
+
+        <h3>9. :focus:active</h3>
+        <p>Hold the spacebar on an unchecked checkbox, whilst the cursor is elsewhere.</p>
+
+        <h3>10. :focus:checked</h3>
+        <p>Same as number 3, except the checkbox is already checked.</p>
+
+        <h3>11. :active:checked</h3>
+        <p>This is a tricky one to get. Just like number 4 you have to hold down the mouse and move the cursor away from the checkbox. The only difference is that the checkbox has to be checked <em>before</em> you click on it.</p>
+
+        <h3>12. :hover:focus:active</h3>
+        <p>For this one you need to hold the spacebar on an unchecked checkbox, whilst the cursor is hovering over it.</p>
+
+        <h3>13. :hover:focus:checked</h3>
+        <p>Simply hovering over a focused checkbox, that is checked.</p>
+
+        <h3>14. :hover:active:checked</h3>
+        <p>Press and hold the mouse on an already checked checkbox. After you release the mouse focus will come back and active and checked will go.</p>
+
+        <h3>15. :focus:active:checked</h3>
+        <p>Press and hold the spacebar on an already checked checkbox, with the cursor somewhere else.</p>
+
+        <h3>16. :hover:focus:active:checked</h3>
+        <p>Bingo! To get all 4 the cursor has to be hovering over an already checked checkbox that is in focus, then hold down the spacebar. At this point you will add the :active state, but the :checked state will not be removed yet (this happens after you release the spacebar) You can't hold down the mouse to get all 4 states, since pressing the mouse removes the :focus state.</p>
+
+
+        <div>
+            <label><input type="checkbox" name="a"><span class="checkbox extra-large"></span></label>
+        </div>
+
+        <div>            
+            <label class="test">
+                <input type="checkbox" name="b">
+                <span class="checkbox extra-large"></span>
+                <span class="label extra-large">Click me!</span>
+                <span class="label test-indicators">
+                    <span class="hover">:hover</span>
+                    <span class="focus">:focus</span>
+                    <span class="active">:active</span>
+                    <span class="checked">:checked</span>
+                </span>
+            </label>
+        </div>
+
+        <div>
+            <label><input type="checkbox" name="c"><span class="checkbox extra-large"></span></label>
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-36765884-3');
+
+    </script>
+
+</body>
+
+</html>

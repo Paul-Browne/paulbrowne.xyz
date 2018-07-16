@@ -145,7 +145,7 @@
 
 
 
-
+    
 
 
 
@@ -180,10 +180,8 @@
                       { 'dimension3': WURFL.complete_device_name }
                     );
 
-                    gtag('send', {
-                      hitType: 'event',
-                      eventCategory: 'device',
-                      eventAction: WURFL.complete_device_name
+                    gtag('event', WURFL.complete_device_name, {
+                      'event_category': 'device'
                     });
 
                 }, 1000);
