@@ -36,27 +36,10 @@
     <meta property="og:url" content="https://paulbrowne.xyz/shrthnd-css">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.css">
-    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
-    <!-- <script src="js/ucjs.js"></script> -->
-    <script src="js/highlight.pack.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-
-    </script>
-
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,600|Roboto:300,400,700" >
+    
     <style>
-        body {
-            line-height: 1.4;
-            font-family: 'Libre Baskerville', serif;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
         code {
             background: #eeefff;
             padding: 2px 5px;
@@ -83,16 +66,8 @@
 </head>
 
 <body>
-    <nav class="d-f ai-c jc-sb mw-45 m-a m_m-l-1 m_m-r-1 m-t-05">
-        <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
-        <div>
-            <a class="td-n m-r-1" href="contents">contents</a>
-            <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
-            <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
-            <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
-        </div>
-    </nav>
-    <section class="mw-45 m-a m_m-l-1 m_m-r-1">
+    <div data-inc="header"></div>
+    <main class="main">
         <h1 class="ta-c">Shrthnd.css</h1>
         <p><b>shrthnd.css</b> is a lightweight (~8kb gzipped) utility css library for rapid site building.</p>
 
@@ -1866,23 +1841,20 @@
     </div>
 
 
-    </section>
+    </main>
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-36765884-3');
-
     </script>
-
+    <script src="js/carl.bundle.js"></script>
 </body>
 
 </html>

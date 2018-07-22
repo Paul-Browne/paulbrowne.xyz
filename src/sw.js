@@ -8,7 +8,6 @@ self.addEventListener('install', function (e) {
       'css/normalize.css',
       'css/shrthnd.css'
       ]).then(function () {
-      console.log("test");
       return self.skipWaiting();
     });
   }));

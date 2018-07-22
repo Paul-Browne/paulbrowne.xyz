@@ -36,79 +36,37 @@
     <meta property="og:url" content="https://paulbrowne.xyz/https-localhost">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.css">
-    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
-    <script src="js/highlight.pack.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-
-    </script>
-    <style>
-        body {
-            line-height: 1.4;
-            font-family: 'Libre Baskerville', serif;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        code {
-            background: #eeefff;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,600|Roboto:300,400,700" >
+    
 </head>
 
 <body>
-    <nav class="d-f ai-c jc-sb mw-45 m-a m_m-l-1 m_m-r-1 m-t-05">
-        <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
-        <div>
-            <a class="td-n m-r-1" href="contents">contents</a>
-
-            <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
-
-            <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
-
-            <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
-        </div>
-    </nav>
-    <section class="mw-45 m-a m_m-l-1 m_m-r-1">
+    <div data-inc="header"></div>
+    <main class="main">
         <h1 class="ta-c">https://localhost</h1>
         <p class="">A set of really simple commands to enable https over localhost for Mac</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 cd; mkdir .ssl
 
 openssl req -newkey rsa:2048 -x509 -nodes -keyout .ssl/localhost.key -new -out .ssl/localhost.crt -subj /CN=localhost -reqexts SAN -extensions SAN -config &lt;(cat /System/Library/OpenSSL/openssl.cnf &lt;(printf '[SAN]\nsubjectAltName=DNS:localhost')) -sha256 -days 3650
 
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain .ssl/localhost.crt
-            </code>
-        </pre>
+        </code></pre>
         <p>Now that you have a certificate for you loacalhost, you can spin up a server. An easy option would be to use <a href="https://www.npmjs.com/package/http-server">http-server</a>, which comes with options to serve over ssl.</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 npm install http-server -g
-            </code>
-        </pre>
+        </code></pre>
         <p>Now to spin-up the server with ssl you'll need to pass a few options to the http-server command.</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/localhost.key -a localhost -o
-            </code>
-        </pre>
+        </code></pre>
         <p>This command is quite long to type in everytime you want to spin-up a server with ssl, so you might want to consider adding an <code>alias</code> like</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 alias https-server='http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/localhost.key -a localhost -o'
-            </code>
-        </pre>
+        </code></pre>
         <p>And add it to your <code>.bash_profile</code></p>
-    </section>
+    </main>
 
 
 
@@ -118,16 +76,13 @@ alias https-server='http-server --ssl --cert ~/.ssl/localhost.crt --key ~/.ssl/l
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-36765884-3');
-
     </script>
-
+    <script src="js/carl.bundle.js"></script>
 </body>
 
 </html>

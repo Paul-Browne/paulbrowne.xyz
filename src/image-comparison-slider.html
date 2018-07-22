@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="image-comp-page">
 
 <head>
     <meta charset="utf-8">
@@ -36,109 +36,14 @@
     <meta property="og:url" content="https://paulbrowne.xyz/image-comparison-slider">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.css">
-    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
-    <script src="js/highlight.pack.js"></script>
-    <style>
-        body {
-            line-height: 1.4;
-            font-family: 'Libre Baskerville', serif;
-        }
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,600|Roboto:300,400,700" >    
 
-        p {
-            font-size: 18px;
-        }
-
-        code {
-            background: #eeefff;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-    </style>
-
-
-    <style type="text/css">
-        img {
-            width: 100%;
-            vertical-align: middle;
-        }
-
-        .image-spliter,
-        img,
-        .mover {
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .image-spliter {
-            position: relative;
-        }
-
-        .img-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .mover {
-            position: absolute;
-            width: 200px;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-
-        .mover:before,
-        .mover:after {
-            position: absolute;
-            left: 50%;
-            content: "";
-            background: #fff;
-            cursor: -webkit-grab;
-            cursor: grab;
-        }
-
-        .mover:before {
-            top: 0;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 100%;
-        }
-
-        .mover:after {
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 5px;
-            height: 33%;
-            border-radius: 5px;
-        }
-
-    </style>
 </head>
 
 <body>
-    <nav class="d-f ai-c jc-sb mw-45 m-a m_m-l-1 m_m-r-1 m-t-05">
-        <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
-        <div>
-            <a class="td-n m-r-1" href="contents">contents</a>
-
-            <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
-
-            <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
-
-            <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
-        </div>
-    </nav>
-    <section class="mw-45 m-a m_m-l-1 m_m-r-1">
+    <div data-inc="header"></div>
+    <main class="main">
         <h1 class="ta-c">Image comparison slider</h1>
 
         <div class="image-spliter">
@@ -154,8 +59,7 @@
         <p>The plugin is written in pure javascript, and the markup is kept to the bare minimal, making it easy to add to any project. The slider will work on touchscreen devices.</p>
 
         <p>The image divider can be changed by editing the small amount of css that needs to be included.</p>
-        <pre>
-            <code class="html">
+        <pre><code class="html">
 &lt;link rel="stylesheet" type="text/css" href="css/image-comparison-slider.css"&gt;
 
 &lt;div class="image-spliter"&gt;
@@ -165,33 +69,23 @@
 &lt;/div&gt;
 
 &lt;script src="js/image-comparison-slider.min.js"&gt;&lt;/script&gt;
-            </code>
-        </pre>
+            </code></pre>
 
         <p>find the repo over on <a href="https://github.com/Paul-Browne/image-comparison-slider">github</a></p>
-    </section>
+    </main>
 
-
-
-    <script src="js/image-comparison-slider.js"></script>
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
     <script>
-        hljs.initHighlightingOnLoad();
-
-    </script>
-    <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-36765884-3');
-
     </script>
-
+    <script src="js/carl.bundle.js"></script>
 </body>
 
 </html>

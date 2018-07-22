@@ -1,1 +1,1 @@
-body{margin:0;font-size:18px;line-height:1.4}.grid-test{display:-ms-grid;display:grid;-ms-grid-columns:10px (250px 10px)[4];grid-template-columns:10px repeat(4,250px 10px)}.hello:world{color:red}
+body{margin:0;font-size:18px;line-height:1.4}

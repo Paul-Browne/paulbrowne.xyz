@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="home-page">
 
 <head>
     <meta charset="utf-8">
@@ -35,48 +35,16 @@
     <meta property="og:description" content="Website of Paul Browne, Web developer from Helsinki">
     <meta property="og:url" content="https://paulbrowne.xyz">
     <!-- /Social media meta stuff -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
-    <!-- <script src="js/ucjs.js"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
+        
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,600|Roboto:300,400,700" >
 
     <script type="text/javascript">if ('serviceWorker' in navigator) {window.addEventListener('load', function() {navigator.serviceWorker.register('sw.js')});}</script>
-
-    <style>
-        #t-1,
-        #t-2,
-        #t-3 {
-            font-family: 'Libre Baskerville', serif;
-        }
-
-        section {
-            height: 100vh;
-        }
-
-        .wrapper {
-            position: relative;
-        }
-
-        .wrapper:hover .me {
-            opacity: 1
-        }
-
-        .me {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: all 1s;
-        }
-
-    </style>
 </head>
 
 <body>
-    <section class="d-f jc-c ai-c m_fd-r mp_fd-c">
-        <div class="wrapper w-a va-m d-b h-8 m-r-2 m_m-b-0 m_m-r-2 mp_m-b-2 mp_m-r-0">
-            <svg class="w-8" viewbox="0 0 325 325" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+    <section>
+        <svg viewbox="0 0 325 325">
             <g>
                 <path fill="black" id="svg_1" d="m12.227,318.323l33.783,-19.73l0,-76.215l33.243,19.189l66.487,-38.649l0.27,-76.756l-66.216,-38.649l-68.378,38.919l0.81,191.891l0.001,0z"></path>
                 <path fill="#fff" id="svg_2" d="m47.15,145.689l31.786,-18.338c0,0.245 32.763,19.316 32.763,19.316l0,37.408l-32.274,19.071l-32.519,-19.315l0.245,-38.142l-0.001,0z"></path>
@@ -84,70 +52,12 @@
                 <path fill="#fff" id="svg_4" d="m216.383,184.305l31.527,18.081c-0.002,-0.244 32.182,-19.579 32.182,-19.579l-0.31,-37.407l-32.015,-18.81l-31.94,19.576l0.556,38.14l0,-0.001z"></path>
             </g>
         </svg>
-            <img class="me va-m w-8" src="images/200/me.jpg" srcset="images/200/me.jpg 1x, images/400/me.jpg 2x, images/800/me.jpg 3x">
-        </div>
-        <div class="mp_ta-c">
-            <h1 class="m-0 m-b-05 fs-34" id="t-1"></h1>
-            <p class="m-0 fs-22" id="t-2"></p>
-            <p class="m-0 fs-18 m-t-05 fs-i" id="t-3"><a href="contents"></a></p>
+        <div class="animated-texts">
+            <h1 id="t-1" class="gamma medium serif"></h1>
+            <h2 id="t-2" class="medium serif"></h2>
+            <p id="t-3"><a href="contents"></a></p>
         </div>
     </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.6/typed.min.js"></script>
-    <script type="text/javascript">
-        var t1 = new Typed('#t-1', {
-            strings: ["Paul Browne"],
-            typeSpeed: 80,
-            startDelay: 1700,
-            cursorChar: ''
-        });
-        // var t2 = new Typed('#t-2', {
-        //     strings: ["Web designer", "Web developer"],
-        //     typeSpeed: 100,
-        //     startDelay: 3700,
-        //     cursorChar: '',
-        //     backSpeed: 200,
-        //     backDelay: 1000
-        // });
-        var t2 = new Typed('#t-2', {
-            strings: ["Web developer"],
-            typeSpeed: 80,
-            startDelay: 3700,
-            cursorChar: ''
-        });
-        var t3 = new Typed('#t-3 a', {
-            strings: ["here's a bunch of stuff i've done"],
-            typeSpeed: 80,
-            startDelay: 5700,
-            cursorChar: ''
-        });
-
-    </script>
-    <!--
-<script>
-    var svg_1 = document.getElementById("svg_1");
-    var svg_2 = document.getElementById("svg_2");
-    var svg_3 = document.getElementById("svg_3");
-    var svg_4 = document.getElementById("svg_4");
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    window.addEventListener("mousemove", function(e){
-        var x = e.clientX;
-        var y = e.clientY;
-        svg_1.style.fill = "rgb(0," + Math.round(100 * (x/w)) + "," + Math.round(100 * (y/h)) + ")";
-        svg_2.style.fill = "rgb(255," + Math.round(255 - (100 * (y/h))) + "," + Math.round(255 - (100 * (x/w))) + ")";
-        svg_3.style.fill = "rgb(0," + Math.round(100 * (y/h)) + "," + Math.round(100 * (x/w)) + ")";
-        svg_4.style.fill = "rgb(255," + Math.round(255 - (100 * (x/w))) + "," + Math.round(255 - (100 * (y/h))) + ")";
-    });
-</script>
--->
-
-
-
-
-    
-
-
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
@@ -159,79 +69,7 @@
         gtag('js', new Date());
         gtag('config', 'UA-36765884-3');
     </script>
-
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <script>
-        (function(){
-            // Notification.requestPermission().then(function(result) {            
-            //     if(result != "granted"){
-
-            //     }
-            // });
-
-            // var s = document.createElement('script');
-            // s.src = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
-            // document.getElementsByTagName('head')[0].appendChild(s);
-
-            function loadedWURFL(){                
-                setTimeout(function(){
-                    console.log('sent to GA: ' + WURFL.complete_device_name);
-                    gtag('send', 'pageview',
-                      { 'dimension3': WURFL.complete_device_name }
-                    );
-
-                    gtag('event', WURFL.complete_device_name, {
-                      'event_category': 'device'
-                    });
-
-                }, 1000);
-                var OneSignal = window.OneSignal || [];
-                OneSignal.push(["init", {
-                    appId: "9b09f370-052b-4925-a297-9d9d35bda12b",      //paulbrowne.xyz
-                    //appId: "33f7449e-225a-4177-ad86-ac471e67615b",      //localhost
-                    autoRegister: false,
-                    notifyButton: {
-                        enable: false /* Set to false to hide */
-                    },
-                    // displayPredicate: function() {
-                    //     return OneSignal.isPushNotificationsEnabled().then(function(isPushEnabled) {
-                    //         return !isPushEnabled; // hide if subscribed
-                    //     });
-                    // },
-                    welcomeNotification: {
-                        "title": "My Custom Title",
-                        "message": "Thanks for subscribing!",
-                        // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
-                    },
-                    promptOptions: {
-                        /* actionMessage limited to 90 characters */
-                        actionMessage: "We'd like to show you notifications for the latest news and updates.",
-                        /* acceptButtonText limited to 15 characters */
-                        acceptButtonText: "ALLOW",
-                        /* cancelButtonText limited to 15 characters */
-                        cancelButtonText: "NO THANKS"
-                    }
-                }]);
-                OneSignal.push(function() {
-                    OneSignal.showHttpPrompt();
-                });
-                                    
-                OneSignal.push(function() {                    
-                    OneSignal.sendTags({
-                        "device": WURFL.complete_device_name,
-                        "is_mobile": WURFL.is_mobile
-                    });
-                });
-            
-            }
-
-            var newScript = document.createElement("SCRIPT");
-            newScript.setAttribute("src", "https://wurfl.io/wurfl.js");     
-            newScript.addEventListener("load", loadedWURFL);
-            document.head.appendChild(newScript);
-
-        })();
-    </script>
+    <script src="js/carl.bundle.js"></script>
 
 </body>
 

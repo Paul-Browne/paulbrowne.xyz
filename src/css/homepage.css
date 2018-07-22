@@ -1,0 +1,41 @@
+section {
+    height: 100vh;
+}
+
+section {
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+svg {
+	width:  180px;
+	margin-right: 2rem;		
+}
+
+.animated-texts {
+	min-width: 320px;
+}
+
+.animated-texts *{
+	margin: 0;
+	margin-bottom: 0.25rem;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+	section {
+		flex-direction: column;
+		margin-right: 0;
+	}
+	svg {
+		margin-right: 0;
+		margin-bottom: 1rem;	
+	}
+	.animated-texts {
+		text-align: center;
+	}
+}

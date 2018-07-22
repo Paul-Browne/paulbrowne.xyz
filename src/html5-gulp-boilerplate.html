@@ -36,91 +36,50 @@
     <meta property="og:url" content="https://paulbrowne.xyz/html5-gulp-boilerplate">
     <!-- /Social media meta stuff -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.css">
-    <link rel="stylesheet" type="text/css" href="css/shrthnd.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
-    <script src="js/highlight.pack.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,600|Roboto:300,400,700" >
 
-    </script>
-    <style>
-        body {
-            line-height: 1.4;
-            font-family: 'Libre Baskerville', serif;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        code {
-            background: #eeefff;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-    </style>
+    
 </head>
 
 <body>
-    <nav class="d-f ai-c jc-sb mw-45 m-a m_m-l-1 m_m-r-1 m-t-05">
-        <a class="td-n" href="/"><img class="va-m w-3" src="images/pb_2_.svg"></a>
-        <div>
-            <a class="td-n m-r-1" href="contents">contents</a>
-            <a class="td-n m-r-1" href="https://github.com/Paul-Browne"><img class="va-m w-1" src="images/git.svg"></a>
-            <a class="td-n m-r-1" href="https://twitter.com/paulbrownexyz"><img class="va-m w-1" src="images/twit.svg"></a>
-            <a class="td-n" href="https://www.instagram.com/paulbrownexyz/"><img class="va-m w-1" src="images/inst.svg"></a>
-        </div>
-    </nav>
-    <section class="mw-45 m-a m_m-l-1 m_m-r-1">
+    <div data-inc="header"></div>
+    <main class="main">
         <h1 class="ta-c">html5 gulp boilerplate</h1>
         <h2>getting started</h2>
         <p class="">First create a repo for your project on github, then clone the <a href="https://github.com/Paul-Browne/html5-gulp-boilerplate">html5-gulp-boilerplate</a> project, into 'project-name'</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 git clone https://github.com/Paul-Browne/html5-gulp-boilerplate.git project-name
-            </code>
-        </pre>
+        </code></pre>
         <p>Now you'll want to change the origin of remote (where you push to, and pull from) to the github url of the 'project-name' repo</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 git remote set-url origin https://github.com/user-name/project-name.git
-            </code>
-        </pre>
+        </code></pre>
         <p>change <code>user-name</code> and <code>project-name</code> to whatever your github user name is, and whatever you named your new project.<br> Run the command <code>git remote -v</code> to check that you entered the name correctly.</p>
         <p>You'll probably want to change a few fields in the package.json, such as <code>name</code>, <code>repository url</code>, <code>author</code> etc.</p>
         <p>Now all thats left for you to do is commit the changes to the package.json, and push to master</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 git add .
 git commit -m 'updated package.json'
 git push
-            </code>
-        </pre>
+        </code></pre>
         <h2>Prerequisite</h2>
         <p>This boilerplate includes image resizing and optimization, which requires the <a href="https://www.imagemagick.org/script/index.php">imagemagick</a> and <a href="http://www.graphicsmagick.org/">graphicsmagick</a> libraries to be installed on your
             system. For Mac you can install these via brew</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 brew install imagemagick --build-from-source
 brew install graphicsmagick --build-from-source
-            </code>
-        </pre>
+        </code></pre>
         <h2>Instalation</h2>
         <p>from within the project directory run</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 npm install
 npm run build
-            </code>
-        </pre>
+        </code></pre>
         <p>This will first download all the dependencies and then build the project. Simple. Open <a href="//localhost:8888">localhost:8888</a> and you should see 'Hello world'</p>
         <p>Other commands are <br><code>npm run clean</code> - which will delete all files in /dist and /dev, not including images,<br><code>npm run clean-all</code> - which will delete all files in /dist and /dev, including images and <br><code>npm pretty</code>            - which will prettify the contents of the <code>/src</code> directory.</p>
         <h2>Project structure</h2>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 project-name
 + dev           # compiled from src, for development
 + dist          # compiled from src, for production
@@ -139,8 +98,7 @@ project-name
 .jsbeautifyrc   # options for prettifying
 gulpfile.js
 package.json
-            </code>
-        </pre>
+        </code></pre>
 
 
         <h2>Features</h2>
@@ -148,12 +106,10 @@ package.json
         <p>The boilerplate comes with a fully loaded <a href="https://expressjs.com/">express server</a> for all your developement needs, including https, http2 and gzip compression.</p>
         <p>The <code>node run build</code> command will fire up 2 servers listening to <a href="//localhost:8888">localhost:8888</a> and serving the <code>/dist</code> directory, and another one listening to <a href="//localhost:8887">localhost:8887</a>            and serving the <code>/dev</code> directory</p>
         <p>If you have https://localhost then express will look for the certificate and key in the <code>.env</code> file in the root directory of the project, and should look something like this</p>
-        <pre>
-            <code class="bash">
+        <pre><code class="bash">
 SSL_CRT_PATH = "/.ssl/localhost.crt"
 SSL_KEY_PATH = "/.ssl/localhost.key"
-            </code>
-        </pre>
+        </code></pre>
         <p>Mac users can setup ssl for localhost with <a href="https-localhost">these 3 simple commands</a></p>
         <p>If you don't have ssl setup for localhost then express will fallback to http://localhost, without ssl and http2, but still with gzip compression.</p>
         <p>The <code>/dist</code> directory will contain all the production ready code, minified &amp; combined html, css and js files.<br>The <code>/dev</code> directory contains the same code, only prettified and from the source files (before combining)
@@ -175,20 +131,16 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
         <h3>File combining</h3>
         <p>When marked, css and javascript can be combined into a single file, like so</p>
 
-        <pre>
-            <code class="html">
+        <pre><code class="html">
 &lt;!-- build:css css/global.css --&gt;
 &lt;link href="css/normalize.css" rel="stylesheet"&gt;
 &lt;link href="css/main.css" rel="stylesheet"&gt;
 &lt;!-- endbuild--&gt;
-            </code>
-        </pre>
+        </code></pre>
         <p>This will result in the following markup in <code>/dist</code><br>In <code>/dev</code> the original source files will be used.</p>
-        <pre>
-            <code class="html">
+        <pre><code class="html">
 &lt;link href="css/global.css" rel="stylesheet"&gt;
-            </code>
-        </pre>
+        </code></pre>
 
         <h3>Preprocessors</h3>
         <p>scss and less files will be converted to css, this css will also be minified and can be sourced for file combination if required.</p>
@@ -197,17 +149,14 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
         <p>css properties and values will be autoprefixed so they work on older browsers, current settings are for browsers with greater than 1% global usage.</p>
         <p>for example</p>
 
-        <pre>
-            <code class="css">
+        <pre><code class="css">
 .example {
     display: flex;
     flex-direction: column;
 }
-            </code>
-        </pre>
+        </code></pre>
         <p>will become</p>
-        <pre>
-            <code class="css">
+        <pre><code class="css">
 .example {
     display: -webkit-box;
     display: flex;
@@ -215,8 +164,7 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
     -webkit-box-direction: normal;
     flex-direction: column;
 }
-            </code>
-        </pre>
+        </code></pre>
 
         <h3>File caching</h3>
         <p>The build process will also launch a <code>watch</code> process, to re-build the <code>/dev</code> and <code>/dist</code> directories whenever a file is saved.</p>
@@ -230,7 +178,7 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
 
 
         <p>Go and checkout html5-gulp-boilerplate project over at <a href="https://github.com/Paul-Browne/html5-gulp-boilerplate">github</a></p>
-    </section>
+    </main>
 
 
 
@@ -240,16 +188,13 @@ SSL_KEY_PATH = "/.ssl/localhost.key"
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-36765884-3');
-
     </script>
-
+    <script src="js/carl.bundle.js"></script>
 </body>
 
 </html>
