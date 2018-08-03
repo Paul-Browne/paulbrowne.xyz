@@ -1,3 +1,11 @@
+<style>
+	html{
+		opacity: 1;
+	}
+	html.js-beforeunload{
+		opacity: 0;
+	}
+</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-3"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -6,4 +14,8 @@
     }
     gtag('js', new Date());
     gtag('config', 'UA-36765884-3');
+
+    window.addEventListener('beforeunload', function(event) {
+     	document.documentElement.classList.add("js-beforeunload");
+    });
 </script>

@@ -422,7 +422,10 @@ hr {
 
 
 
-
+html{
+    transition: 0.2s opacity;
+    opacity: 0;
+}
 
 
 
