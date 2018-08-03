@@ -4,9 +4,7 @@ self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(cacheName).then(function (cache) {
     return cache.addAll([
       '/',
-      'css/main.css',
-      'css/normalize.css',
-      'css/shrthnd.css'
+      'css/global.css'
       ]).then(function () {
       return self.skipWaiting();
     });

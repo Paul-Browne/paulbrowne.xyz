@@ -25,6 +25,12 @@
         "#image-comp-page" : [
             "css/image-comparison-slider-page.css",
             "js/image-comparison-slider.js"            
+        ],
+        "[data-inc='google-analytics']" : [
+            "components/google-analytics.html"
+        ],
+        "[data-inc='favicons']" : [
+            "components/favicons.html"
         ]
     };
 
