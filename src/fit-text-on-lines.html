@@ -34,8 +34,8 @@
 <body>
     <div data-inc="header"></div>
     <main class="main">
-        <h1 class="js-ftol ta-c">Fit text on lines</h1>
-        <p class="js-ftol">Fit text on lines automatically adjusts the font-size of an element to the maximum size it can be, whilst keeping the text on a specified amount of lines. For example, the above headline is the maximum font-size it can be, whilst staying on one
+        <h1 class="ftol hero ta-c">Fit text on lines</h1>
+        <p class="ftol ingress">Fit text on lines automatically adjusts the font-size of an element to the maximum size it can be, whilst keeping the text on a specified amount of lines. For example, the above headline is the maximum font-size it can be, whilst staying on one
             line, and this paragraph will resize to always fit on</p>
 
         <p>Simply add the script in the head, and call before the closing body tag</p>
@@ -47,7 +47,7 @@
     &lt;!-- content --&gt;
 
     &lt;script&gt;
-        fittextonlines();
+        window.ftol();
     &lt;/script&gt;
 &lt;/body&gt;
         </code></pre>
@@ -57,24 +57,24 @@
         <pre><code class="css br-6">
 /* the above example */
 
-h1.js-ftol {
+.hero {
     min-height: 1px;
 }
 
-p.js-ftol {
+.ingress {
     min-height: 6px;
 }
 
 /* works with @media queries */
 
 @media only screen and (max-width: 45em){
-    p.js-ftol {
+    .ingress {
         min-height: 9px;
     }
 }
         </code></pre>
 
-        <p>If you are using a custom font - which you probably are - and it comes form google fonts or typescript - which it probably does. Then you'll need to call the <code>fittextonlines()</code> script using the <a href="https://github.com/typekit/webfontloader">WebFontConfig script</a>            like so</p>
+        <p>If you are using a custom font - which you probably are - and it comes form google fonts or typescript - which it probably does. Then you'll need to call the <code>window.ftol();</code> script using the <a href="https://github.com/typekit/webfontloader">WebFontConfig script</a> like so</p>
 
         <pre><code class="js">
 WebFontConfig = {
@@ -82,7 +82,7 @@ WebFontConfig = {
         families: ['Libre Baskerville:400,400i,700']
     },
     active: function() {
-        fittextonlines();
+        window.ftol();
     }
 };
         </code></pre>
