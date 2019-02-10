@@ -1,21 +1,21 @@
-h1.js-ftol {
+h1.hero {
     min-height: 1px;
 }
 
-p.js-ftol {
+p.ingress {
     min-height: 6px;
     
 }
 
-p.js-ftol:after {
+p.ingress:after {
     content: " 6 lines";
 }
 
 @media only screen and (max-width: 45em) {
-    p.js-ftol {
+    p.ingress {
         min-height: 9px;
     }
-    p.js-ftol:after {
+    p.ingress:after {
         content: " 9 lines";
     }
 }

@@ -3,7 +3,7 @@ WebFontConfig = {
         families: ['Lora:400,400i,700', 'Roboto:300,400,700']                
     },
     active: function() {
-        fittextonlines();
+        window.ftol();
     }
 };
 
