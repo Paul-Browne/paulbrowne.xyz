@@ -18,8 +18,8 @@
             "js/debouncing-page.js"
         ],
         "#fit-text-page" : [
-            "js/ftol.js",
             "css/fit-text-on-line.css",
+            "js/ftol.js",
             "js/WebFontConfig.js"
         ],
         "#image-comp-page" : [
