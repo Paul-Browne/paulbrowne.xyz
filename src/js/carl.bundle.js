@@ -17,11 +17,6 @@
             "css/debouncing-page.css",
             "js/debouncing-page.js"
         ],
-        "#fit-text-page" : [
-            "css/fit-text-on-line.css",
-            "js/ftol.js",
-            "js/WebFontConfig.js"
-        ],
         "#image-comp-page" : [
             "css/image-comparison-slider-page.css",
             "js/image-comparison-slider.js"            
