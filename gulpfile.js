@@ -515,7 +515,7 @@ gulp.task('build', function(callback) {
     'scss',
     'css',
     'js',
-    'images',
+    // 'images',
     'resize',
     'html',
     'combine',
