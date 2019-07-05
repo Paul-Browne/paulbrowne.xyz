@@ -249,10 +249,10 @@ gulp.task('js', function() {
 gulp.task('images', function() {
   return gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
   .pipe(changed('dist'))
-  .pipe(gulpIgnore(message))
-  .pipe(image(imgPrefs))
+  //.pipe(gulpIgnore(message))
+  //.pipe(image(imgPrefs))
   .pipe(gulp.dest('dist'))
-  .pipe(gulp.dest('dev'))
+  //.pipe(gulp.dest('dev'))
 })
 
 // html minification
@@ -515,7 +515,7 @@ gulp.task('build', function(callback) {
     'scss',
     'css',
     'js',
-    // 'images',
+    'images',
     'resize',
     'html',
     'combine',
